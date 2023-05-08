@@ -35,6 +35,7 @@ const User = sequelize.define('users', {
     },
     profile_img: {
         type: DataTypes.STRING,
+        defaultValue: 'http://placekitten.com/200/300'
     },
     bio: {
         type: DataTypes.TEXT,
