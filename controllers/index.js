@@ -1,5 +1,7 @@
 const router = require("express").Router();
 
+const { Comment, Interest, Post, User } = require("../models");
+
 const apiRoutes = require("./api");
 const searchRoutes = require("./searchController");
 const signupRoutes = require("./signupController");
