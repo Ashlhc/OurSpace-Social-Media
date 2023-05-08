@@ -1,17 +1,40 @@
-const Sequelize = require("sequelize");
+const path = require("path");
+const express = require("express");
+const session = require("express-session");
+const exphbs = require("express-handlebars");
+const routes = require("./controllers");
 
-const sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    {
-        host:'localhost',
-        dialect: 'mysql'
-    }
-);
+const sequelize = require("./config/connection");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
-sequelize.authenticate().then(()=>{
-    console.log('Connection successful.');
-}).catch((error)=>{
-    console.log('Unable to connect to database:',error);
+const app = express();
+const PORT = process.env.PORT || 5678;
+
+const sess = {
+    secret: "our secret here",
+    cookie: {
+
+    },
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+        db: sequelize
+    })
+}
+
+const hbs = exphbs.create({});
+
+app.engine("handlebars",hbs.engine);
+app.set("view engine","handlebars");
+
+app.use(session(sess));
+
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use(express.static(path.join(__dirname,"public")));
+
+app.use(routes);
+
+sequelize.sync({force:false}).then(()=>{
+    app.listen(PORT, ()=> console.log(`Listening on port ${PORT}.`));
 });
