@@ -1,8 +1,8 @@
-const User = require('./user-info');
-const Post = require('./posts');
+const User = require('./User');
+const Post = require('./Post');
 // const Friend = require('./friends');
-const Interest = require('./interests');
-const Comment = require('./comments');
+const Interest = require('./Interest');
+const Comment = require('./Comment');
 
 Post.belongsTo(User,{
     onDelete:"CASCADE"
