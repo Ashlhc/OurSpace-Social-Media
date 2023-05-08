@@ -1,25 +1,14 @@
-const { Sequelize, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require('../config/connection');
+const bcrypt = require('bcrypt');
 
-const sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    {
-        host: 'localhost',
-        dialect: 'mysql2'
-    }
-);
+class User extends Model {}
 
-sequelize.authenticate().then(()=>{
-    console.log('Connection successful.');
-}).catch((error)=>{
-    console.log('Unable to connect to database:',error);
-});
-
-const User = sequelize.define('users', {
+User.init({
     userName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique:true
     },
     firstName: {
         type: DataTypes.STRING,
@@ -31,7 +20,10 @@ const User = sequelize.define('users', {
     },
     password: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate:{
+            len:[8]
+        }
     },
     profile_img: {
         type: DataTypes.STRING,
