@@ -34,10 +34,15 @@ User.init({
         allowNull: true
     }
 
+},{
+    sequelize,
+        hooks:{
+            beforeCreate: userObj=>{
+            console.log(userObj)
+            userObj.password = bcrypt.hashSync(userObj.password,3);
+            return userObj;
+        }
+    }
 });
 
-sequelize.sync().then(()=>{
-    console.log('User table created');
-}).catch((error)=>{
-    console.log('Unable to create table:',error);
-});
+module.exports=User
