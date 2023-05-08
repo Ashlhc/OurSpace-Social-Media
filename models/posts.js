@@ -1,5 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
+
+
 class Post extends Model {}
 
 
@@ -22,14 +24,7 @@ Post.init({
         allowNull: false
     },
 },{
-    sequelize,
-    hooks:{
-        beforeCreate: postObj=>{
-            console.log(postObj)
-            postObj.password = bcrypt.hashSync(postObj.password,3);
-            return postObj;
-        }
-    }
+    sequelize
 });
 
 module.exports=Post
