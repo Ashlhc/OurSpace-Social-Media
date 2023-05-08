@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 class User extends Model {}
 
 User.init({
+
     userName: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -44,5 +45,6 @@ User.init({
         }
     }
 });
+
 
 module.exports=User

@@ -1,12 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-
 class Post extends Model {}
 
-
-
 Post.init({
+
     title: {
         type: DataTypes.STRING,
         allowNull: false
@@ -18,6 +16,7 @@ Post.init({
     author_id: {
         type:DataTypes.INTEGER,
         allowNull: false
+        
     },
     timestamp: {
         type:DataTypes.DATE,
