@@ -1,58 +1,66 @@
 :root{
-    --neutral: white;
-    --neutral-text: black;
-
-    --primary: rgb(107, 35, 173);
-    --primary-text: white;
-
-    --accent: rgb(0, 199, 189);
-    --accent-text: white;
-    --accent-hover: rgb(0,160,150);
-    --accent-text-hover: rgb(200,200,200);
-
-    --delete: red;
-    --delete-text: white;
-
-    --edit: orangered;
-    --edit-text: orange;
-
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body {
-
-}
-header {
-    height: 50px;
-    width: 100vw;
-    background-color: var(--primary);
-    color: var(--primary-text);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-header a {
-    font-size: 40px;
-    text-decoration: none;
-    color: var(--primary-text);
-    padding-left: 30px;
-}
-header form {
-    padding-right: 30px;
-}
-
-.accent-btn{
-    background-color: var(--accent);
-    color: var(--accent-text);
-    border: 0;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.accent-btn:hover{
-    background-color: var(--accent-hover);
-    color: var(--accent-text-hover);
-}
+        --neutral: white;
+        --neutral-text: black;
+        --neutral-hover: rgb(200,200,200);
+        --neutral-text-hover: black;
+    
+        --primary: rgb(107, 35, 173);
+        --primary-text: white;
+        --primary-hover: ;
+        --primary-text-hover: ;
+    
+        --accent: rgb(0, 199, 189);
+        --accent-text: white;
+        --accent-hover: rgb(0,160,150);
+        --accent-text-hover: rgb(200,200,200);
+    
+        --delete: red;
+        --delete-text: white;
+        --delete-hover: rgb(200,0,0);
+        --delete-text-hover: rgb(200,200,200);
+    
+        --edit: rgb(255, 115, 0);
+        --edit-text: orange;
+        --edit-hover: rgb(200,100,0);
+        --edit-text-hover: rgb(201, 154, 0);
+    }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+    }
+    a {
+        text-decoration: none;
+    }
+    a:hover{
+        cursor: pointer;
+    }
+    header {
+        height: 50px;
+        width: 100vw;
+        background-color: var(--primary);
+        color: var(--primary-text);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #header-brand {
+        font-size: 40px;
+        color: var(--primary-text);
+        padding-left: 30px;
+    }
+    header form {
+        padding-right: 30px;
+    }
+    .accent-btn{
+        background-color: var(--accent);
+        color: var(--accent-text);
+        border: 0;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    .accent-btn:hover{
+        background-color: var(--accent-hover);
+        color: var(--accent-text-hover);
+    }
