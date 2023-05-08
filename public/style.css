@@ -17,17 +17,14 @@
     --edit-text: orange;
 
 }
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
 
 }
-
 header {
     height: 50px;
     width: 100vw;
