@@ -8,6 +8,10 @@ router.get("/",(req,res)=>{
     res.send("You found the home page!");
 })
 
+router.get("/sessiondata",(req,res)=>{
+    res.json(req.session);
+})
+
 router.use("/api",apiRoutes);
 router.use("/search",searchRoutes);
 router.use("/signup",signupRoutes);
