@@ -21,9 +21,10 @@ router.get('/search/:username', function(req,res) {
             }
         }
     })
-    .then(allUsers=>{
-        // TODO: Append retrieved data to the search.handlebars
-        res.json(allUsers)
+    .then(searchedUsers=>{
+        const users = searchedUsers.map((user)=>user.get({plain:true}));
+        console.log(users)
+        res.render("search",{users})
     })
 });
 
