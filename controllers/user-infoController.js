@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
       lastName,
       password,
       profile_img,
-      bio,
+      bio
     });
     res.status(201).json(newUser);
   } catch (err) {
@@ -58,7 +58,7 @@ router.put('/:id', async (req, res) => {
       lastName,
       password,
       profile_img,
-      bio,
+      bio
     });
     res.json(updatedUser);
   } catch (err) {

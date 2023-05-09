@@ -6,7 +6,7 @@ router.get("/:userId/friends", (req,res)=>{
         where: { id: req.params.userId},
         include: {
             model: User,
-            as: "Friend",
+            as: "friends",
             attributes: ["id", "username", "first_name", "last_name"],
         },
     })
@@ -14,7 +14,7 @@ router.get("/:userId/friends", (req,res)=>{
         if(!user) {
             return res.status(404).json({msg: "No User found"});
         }
-        res.json(user.Friend);
+        res.json(user.friends);
     })
     .catch((err)=> {
         console.log(err);
@@ -22,18 +22,18 @@ router.get("/:userId/friends", (req,res)=>{
     });
 });
 
-router.post("/:userId/friends", (req,res)=> {
+router.post("/:userId/newfriend", (req,res)=> {
     User.findByPk(req.params.userId)
     .then((user)=> {
         if(!user) {
             return res.status(404).json({ msg: "No User found"});
         }
-        User.findByPk(req.body.friendId)
-        .then((friend)=> {
-            if (!friend) {
+        User.findByPk(req.params.friendId)
+        .then((friends)=> {
+            if (!friends) {
                 return res.status(404).json({msg: "No Friends found"});
             }
-            user.addFriend(friend);
+            user.addFriend(friends);
             res.json({msg:"Friend added!"});
         })
         .catch((err)=> {
