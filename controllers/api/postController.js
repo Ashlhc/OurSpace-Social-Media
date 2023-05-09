@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: 'User with ID not found.' });
     }
-    const posts = await Post.create({ title, body, author_id });
+    const posts = await Post.create({ title, body, UserId: author_id });
     res.status(201).json(posts);
   } catch (err) {
     console.error(err);
@@ -50,7 +50,8 @@ router.post('/', async (req, res) => {
 
 // UPDATE ROUTE
 // JSON FORMAT:
-// 
+// title
+// body
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { text } = req.body;
