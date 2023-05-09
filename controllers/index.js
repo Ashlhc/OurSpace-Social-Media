@@ -3,8 +3,6 @@ const router = require("express").Router();
 const { Comment, Interest, Post, User } = require("../models");
 
 const apiRoutes = require("./api");
-const searchRoutes = require("./searchController");
-const signupRoutes = require("./signupController");
 // THESE ROUTES ARE ALL FOR TESTING PURPOSES
 
 router.get("/sessiondata",(req,res)=>{
@@ -67,8 +65,6 @@ router.get("/users",(req,res)=>{
 // END TESTING ROUTES
 
 router.use("/api",apiRoutes);
-router.use("/search",searchRoutes);
-router.use("/signup",signupRoutes);
 router.use(require("./htmlController"));
 
 module.exports = router;

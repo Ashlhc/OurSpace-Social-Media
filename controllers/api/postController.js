@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { Post, User } = require('../models');
+const { Post, User } = require('../../models');
 
+// GET ROUTE - ALL
 router.get('/', async (req, res) => {
   try {
     const posts = await Post.findAll({ include: User });
@@ -12,6 +13,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET ROUTE - SINGULAR BY ID
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -26,14 +28,19 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// POST ROUTE
+// JSON FORMAT:
+// title
+// body
+// author_id
 router.post('/', async (req, res) => {
-  const { text, author_id, post_id } = req.body;
+  const { title, body, author_id } = req.body;
   try {
     const user = await User.findByPk(author_id);
     if (!user) {
       return res.status(404).json({ error: 'User with ID not found.' });
     }
-    const posts = await Post.create({ text, author_id, post_id });
+    const posts = await Post.create({ title, body, author_id });
     res.status(201).json(posts);
   } catch (err) {
     console.error(err);
@@ -41,6 +48,9 @@ router.post('/', async (req, res) => {
   }
 });
 
+// UPDATE ROUTE
+// JSON FORMAT:
+// 
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { text } = req.body;
@@ -58,6 +68,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+// DELETE ROUTE
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   try {

@@ -4,15 +4,13 @@ const { Op } = require("sequelize");
 
 const { Comment, Interest, Post, User } = require("../models");
 
-
 // Login/Home Page
 router.get('/', function(req,res) {
     // TODO: check if user is logged in. If so, redirect to their profile
     res.render("login")
 });
 
-
-// Search DONE
+// Search
 router.get('/search/:username', function(req,res) {
     // Pulls all users based on similarity to entered parameter
     User.findAll({

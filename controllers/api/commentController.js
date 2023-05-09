@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { Comment, Post, User } = require('../models');
+const { Comment, Post, User } = require('../../models');
 
+// GET ROUTE - ALL
 router.get('/', async (req, res) => {
   try {
     const comments = await Comment.findAll({ include: Post, User });
@@ -12,6 +13,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET ROUTE - SINGULAR BY ID
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -26,6 +28,11 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// POST ROUTE
+// JSON FORMAT:
+// text
+// author_id
+// post_id
 router.post('/', async (req, res) => {
   const { text, author_id, post_id } = req.body;
   try {
@@ -41,6 +48,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+// UPDATE ROUTE
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { text } = req.body;
@@ -58,6 +66,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+// DELETE ROUTE
 router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   try {
