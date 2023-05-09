@@ -21,7 +21,7 @@ router.get('/Comment', function(req,res) {
     res.render('comment');
 });
 
-router.get('/Interest', (req,res) {
+router.get('/Interest', function(req,res) {
     res.render('interest');
 });
 
