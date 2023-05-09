@@ -29,16 +29,17 @@ Post.hasMany(Comment);
 
 // Many-To-Many between Users [Many] --> Users [Many]
 User.belongsTo(User,{
-    through: "friends"
+    as: "Friends",
+    through: "UsersFriends"
 });
 User.belongsTo(User,{
-    through: "friends"
-})
+    as: "Users",
+    through: "UsersFriends"
+});
 
 module.exports = {
     User:User,
     Post:Post,
-    // Friend:Friend,
     Interest:Interest,
     Comment:Comment
 }
