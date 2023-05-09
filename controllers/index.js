@@ -5,7 +5,6 @@ const { Comment, Interest, Post, User } = require("../models");
 const apiRoutes = require("./api");
 const searchRoutes = require("./searchController");
 const signupRoutes = require("./signupController");
-
 // THESE ROUTES ARE ALL FOR TESTING PURPOSES
 
 router.get("/",(req,res)=>{
