@@ -26,7 +26,6 @@ const hbs = exphbs.create({});
 
 app.engine("handlebars",hbs.engine);
 app.set("view engine","handlebars");
-app.use(express.cookieParser('secret option here'));
 app.use(session(sess));
 
 app.use(express.json());
