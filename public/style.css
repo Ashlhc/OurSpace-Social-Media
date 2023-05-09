@@ -1,66 +1,123 @@
 :root{
-        --neutral: white;
-        --neutral-text: black;
-        --neutral-hover: rgb(200,200,200);
-        --neutral-text-hover: black;
-    
-        --primary: rgb(107, 35, 173);
-        --primary-text: white;
-        --primary-hover: ;
-        --primary-text-hover: ;
-    
-        --accent: rgb(0, 199, 189);
-        --accent-text: white;
-        --accent-hover: rgb(0,160,150);
-        --accent-text-hover: rgb(200,200,200);
-    
-        --delete: red;
-        --delete-text: white;
-        --delete-hover: rgb(200,0,0);
-        --delete-text-hover: rgb(200,200,200);
-    
-        --edit: rgb(255, 115, 0);
-        --edit-text: orange;
-        --edit-hover: rgb(200,100,0);
-        --edit-text-hover: rgb(201, 154, 0);
-    }
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: sans-serif;
-    }
-    a {
-        text-decoration: none;
-    }
-    a:hover{
-        cursor: pointer;
-    }
-    header {
-        height: 50px;
-        width: 100vw;
-        background-color: var(--primary);
-        color: var(--primary-text);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    #header-brand {
-        font-size: 40px;
-        color: var(--primary-text);
-        padding-left: 30px;
-    }
-    header form {
-        padding-right: 30px;
-    }
-    .accent-btn{
-        background-color: var(--accent);
-        color: var(--accent-text);
-        border: 0;
-        border-radius: 5px;
-        padding: 5px;
-    }
-    .accent-btn:hover{
-        background-color: var(--accent-hover);
-        color: var(--accent-text-hover);
-    }
+    --neutral: white;
+    --neutral-text: black;
+    --neutral-hover: rgb(200,200,200);
+    --neutral-text-hover: black;
+
+    --primary: rgb(107, 35, 173);
+    --primary-text: white;
+    --primary-hover: rgb(59, 20, 95);
+    --primary-text-hover: ;
+	--primary-dark: rgb(78, 24, 128);
+
+    --accent: rgb(0, 199, 189);
+    --accent-text: white;
+    --accent-hover: rgb(0,160,150);
+    --accent-text-hover: rgb(200,200,200);
+
+    --delete: red;
+    --delete-text: white;
+    --delete-hover: rgb(200,0,0);
+    --delete-text-hover: rgb(200,200,200);
+
+    --edit: rgb(255, 115, 0);
+    --edit-text: orange;
+    --edit-hover: rgb(200,100,0);
+    --edit-text-hover: rgb(201, 154, 0);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    cursor: pointer;
+}
+header {
+    height: 50px;
+    width: 100vw;
+    background-color: var(--primary);
+    color: var(--primary-text);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+input{
+	padding: 4px;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+header form {
+    padding-right: 30px;
+}
+.accent-btn {
+    background-color: var(--accent);
+    color: var(--accent-text);
+    border: 0;
+    border-radius: 5px;
+    padding: 5px;
+}
+.accent-btn:hover {
+    background-color: var(--accent-hover);
+    color: var(--accent-text-hover);
+}
+.big-brand {
+	font-size: 10vw;
+	position: absolute;
+	text-align: center;
+	top: 20%;
+	left: 25%;
+	color: var(--primary-dark);
+}
+.login {
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 20px;
+	justify-content: space-around;
+}
+.login-section {
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	height: calc(100vh - 50px);
+	flex-direction: column;
+}
+.sign-up {
+	display: flex;
+	flex-direction: column;
+	padding-top: 100px;
+	padding-bottom: 20px;
+	justify-content: center;
+}
+.sign-up-section {
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	height: calc(100vh - 50px);
+	flex-direction: column;
+}
+.sign-up-requirement {
+    color: red;
+    font-style: italic;
+	font-size: 12px;
+}
+.form-input {
+	padding: 10px 0;
+}
+.big-btn{
+	font-size: 30px;
+	padding: 10px;
+}
+.input-label{
+	font-size: 18px;
+	color: var(--primary-dark);
+}
+#header-brand {
+    font-size: 40px;
+    color: var(--primary-text);
+    padding-left: 30px;
+}
