@@ -24,6 +24,9 @@
     --edit-text: orange;
     --edit-hover: rgb(200,100,0);
     --edit-text-hover: rgb(201, 154, 0);
+
+	--add-friend: rgb(72, 197, 72);
+	--add-friend-hover: rgb(39, 151, 39);
 }
 * {
     margin: 0;
@@ -54,15 +57,25 @@ input{
 	border: 1px solid black;
 	border-radius: 5px;
 }
-.accent-btn {
-    background-color: var(--accent);
+.accent {
+	background-color: var(--accent);
+}
+.accent:hover{
+	background-color: var(--accent-hover);
+}
+.add-friend {
+	background-color: var(--add-friend);
+}
+.add-friend:hover {
+	background-color: var(--add-friend-hover);
+}
+.btn {
     color: var(--accent-text);
     border: 0;
     border-radius: 5px;
     padding: 5px;
 }
-.accent-btn:hover {
-    background-color: var(--accent-hover);
+.btn:hover {
     color: var(--accent-text-hover);
 }
 .big-brand {
@@ -93,6 +106,9 @@ input{
 	flex-direction: column;
 	align-items: flex-end;
 }
+.full-name {
+	color: rgb(105, 105, 105);
+}
 .input-label {
 	font-size: 18px;
 	color: var(--primary-dark);
@@ -110,6 +126,25 @@ input{
 	align-items: center;
 	height: calc(100vh - 50px);
 	flex-direction: column;
+}
+.search-result {
+	display: flex;
+	border: 2px solid rgb(201, 201, 201);
+	border-radius: 10px;
+	width: 100%;
+	margin-bottom: 10px;
+	justify-content: space-between;
+	padding: 10px;
+}
+.search-results {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	width: 80%;
+	position: absolute;
+	left: 10%;
+	top: 60px;
 }
 .sign-in-section {
     display: flex;
@@ -133,8 +168,8 @@ input{
 	width: 100%;
 }
 .sign-up-requirement {
-  color: red;
-  font-style: italic;
+    color: red;
+    font-style: italic;
 	font-size: 12px;
 }
 .sign-up-section {
@@ -144,6 +179,14 @@ input{
 	height: calc(100vh - 50px);
 	flex-direction: column;
 	width: 55%;
+}
+.user-match {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.user-match a {
+	font-size: 20px;
 }
 #header-brand {
     font-size: 40px;
