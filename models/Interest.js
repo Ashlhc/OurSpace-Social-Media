@@ -14,7 +14,7 @@ Interest.init({
         allowNull: false
     },
 },{
-    sequelize    
+    sequelize
 });
 
 module.exports=Interest
