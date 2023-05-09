@@ -89,9 +89,11 @@ header form {
 .sign-up {
 	display: flex;
 	flex-direction: column;
-	padding-top: 100px;
+	padding-top: 200px;
 	padding-bottom: 20px;
 	justify-content: center;
+	align-items: flex-end;
+	width: 100%;
 }
 .sign-up-section {
     display: flex;
@@ -99,6 +101,10 @@ header form {
 	align-items: center;
 	height: calc(100vh - 50px);
 	flex-direction: column;
+	width: 55%;
+	/* position: absolute;
+	left: -45vw;
+	top: 15vh; */
 }
 .sign-up-requirement {
     color: red;
@@ -107,12 +113,15 @@ header form {
 }
 .form-input {
 	padding: 10px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
 }
-.big-btn{
+.big-btn {
 	font-size: 30px;
 	padding: 10px;
 }
-.input-label{
+.input-label {
 	font-size: 18px;
 	color: var(--primary-dark);
 }
@@ -120,4 +129,8 @@ header form {
     font-size: 40px;
     color: var(--primary-text);
     padding-left: 30px;
+}
+#sign-up {
+	position: relative;
+	left: 41%;
 }
