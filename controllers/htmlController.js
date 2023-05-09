@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { Op } = require("sequelize");
 
 const { Comment, Interest, Post, User } = require("../models");
 
@@ -12,8 +13,17 @@ router.get('/', function(req,res) {
 
 // Search
 router.get('/search/:username', function(req,res) {
-    // TODO: Pull all users based on closely matched
-    res.render("search")
+    // Pulls all users based on similarity to entered parameter
+    User.findAll({
+        where: {
+            username: {
+                [Op.like]: `%${req.params.username}%`
+            }
+        }
+    }).then(allUsers=>{
+        // TODO: Append retrieved data to the search.handlebars
+        res.json(allUsers)
+    })
 });
 
 // Sign up
