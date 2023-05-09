@@ -11,7 +11,8 @@ router.get('/', function(req,res) {
     res.render("login")
 });
 
-// Search
+
+// Search DONE
 router.get('/search/:username', function(req,res) {
     // Pulls all users based on similarity to entered parameter
     User.findAll({
@@ -25,6 +26,10 @@ router.get('/search/:username', function(req,res) {
         const users = searchedUsers.map((user)=>user.get({plain:true}));
         console.log(users)
         res.render("search",{users})
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json({msg:"Error retrieving search data",err});
     })
 });
 
