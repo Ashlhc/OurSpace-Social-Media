@@ -22,7 +22,36 @@ router.get("/sessiondata",(req,res)=>{
 // first name
 // last name
 router.post("/signup",(req,res)=>{
-    res.json(req.body)
+    User.create ({
+        username: req.body.username,    
+        password: req.body.password,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        FriendId: req.body.friend_id
+    })
+    .then((newUser)=>{
+        res.json(newUser);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json({msg:"Error occurred creating database entry",err})
+    });
+})
+
+router.get("/users",(req,res)=>{
+    User.findAll({
+        include: {
+            model: User,
+            as: "Friend"
+        }
+    })
+    .then(allUsers=>{
+        res.json(allUsers);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json({msg:"Error occurred retrieving database entries",err})
+    });
 })
 
 // END TESTING ROUTES

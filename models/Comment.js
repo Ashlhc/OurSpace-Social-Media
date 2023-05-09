@@ -23,7 +23,7 @@ Comment.init({
         allowNull: false
     }
 },{
-    sequelize
+    sequelize,
 });
 
 
