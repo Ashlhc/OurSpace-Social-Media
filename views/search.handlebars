@@ -1,11 +1,11 @@
-{{if users}}
+{{#if users}}
 
 <ul class="search-results">
-    {{#each users}}
+    {{#each users as |user|}}
 		<li class="search-result">
 			<div class="user-match">
-				<a href="/profile/{{username}}">{{username}}</a>
-				<div class="full-name">{{first_name}} {{last_name}}</div>
+				<a href="/profile/{{user.username}}">{{user.username}}</a>
+				<div class="full-name">{{user.first_name}} {{user.last_name}}</div>
 			</div>
 			<button class="btn big-btn add-friend">add friend</button>
 		</li>

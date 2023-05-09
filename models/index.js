@@ -5,27 +5,59 @@ const Comment = require('./Comment');
 
 // One-To-Many from Users [One] --> Posts [Many]
 Post.belongsTo(User,{
+    foreignKey: {
+        allowNull: false
+    },
     onDelete:"CASCADE"
 });
-User.hasMany(Post);
+User.hasMany(Post,{
+    foreignKey: {
+        allowNull: false
+    },
+    onDelete: "CASCADE"
+});
 
 // One-To-Many from Users [One] --> Interests [Many]
 Interest.belongsTo(User,{
+    foreignKey: {
+        allowNull: false
+    },
     onDelete:"CASCADE"
 });
-User.hasMany(Interest);
+User.hasMany(Interest,{
+    foreignKey: {
+        allowNull: false
+    },
+    onDelete: "CASCADE"
+});
 
 // One-To-Many from Users [One] --> Comments [Many]
 Comment.belongsTo(User,{
+    foreignKey: {
+        allowNull: false
+    },
     onDelete:"CASCADE"
 });
-User.hasMany(Comment);
+User.hasMany(Comment,{
+    foreignKey: {
+        allowNull: false
+    },
+    onDelete: "CASCADE"
+});
 
 // One-To-Many from Posts [One] --> Comments [Many]
 Comment.belongsTo(Post,{
+    foreignKey: {
+        allowNull: false
+    },
     onDelete: "CASCADE"
 });
-Post.hasMany(Comment);
+Post.hasMany(Comment,{
+    foreignKey: {
+        allowNull: false
+    },
+    onDelete: "CASCADE"
+});
 
 // Many-To-Many between Users [Many] --> Users [Many]
 User.belongsToMany(User,{
