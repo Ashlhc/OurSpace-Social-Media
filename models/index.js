@@ -28,7 +28,7 @@ Comment.belongsTo(Post,{
 Post.hasMany(Comment);
 
 // Many-To-Many between Users [Many] --> Users [Many]
-User.belongsTo(User,{
+User.belongsToMany(User,{
     as: "Friend",
     through: "UserFriends"
 });
