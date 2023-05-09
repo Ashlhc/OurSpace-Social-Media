@@ -20,7 +20,8 @@ router.get('/search/:username', function(req,res) {
                 [Op.like]: `%${req.params.username}%`
             }
         }
-    }).then(allUsers=>{
+    })
+    .then(allUsers=>{
         // TODO: Append retrieved data to the search.handlebars
         res.json(allUsers)
     })
@@ -34,8 +35,15 @@ router.get('/signup', function(req,res) {
 
 // User Profiles
 router.get('/profile/:username', function(req,res) {
-    // TODO: renders the profile with all the user data
-    res.render("profile");
+    // TODO: include Comments, Posts, Friends, and Interests
+    User.findOne({
+        where: {
+            username: req.params.username
+        }
+    })
+    .then(userProfile=>{
+        res.json(userProfile)
+    })
 });
 
 module.exports = router;
