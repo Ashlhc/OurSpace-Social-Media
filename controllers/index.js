@@ -7,10 +7,6 @@ const searchRoutes = require("./searchController");
 const signupRoutes = require("./signupController");
 // THESE ROUTES ARE ALL FOR TESTING PURPOSES
 
-router.get("/",(req,res)=>{
-    res.send("You found the home page!");
-})
-
 router.get("/sessiondata",(req,res)=>{
     res.json(req.session);
 })
@@ -70,9 +66,9 @@ router.get("/users",(req,res)=>{
 
 // END TESTING ROUTES
 
-
 router.use("/api",apiRoutes);
 router.use("/search",searchRoutes);
 router.use("/signup",signupRoutes);
+router.use(require("./htmlController"));
 
 module.exports = router;

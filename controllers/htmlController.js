@@ -1,28 +1,31 @@
 const express = require("express");
 const router = express.Router();
 
+const { Comment, Interest, Post, User } = require("../models");
+
+
+// Login/Home Page
 router.get('/', function(req,res) {
-    res.render('index');
+    // TODO: check if user is logged in. If so, redirect to their profile
+    res.render("login")
 });
 
-router.get('/Profile', function(req,res) {
-    res.render('profile');
+// Search
+router.get('/search/:username', function(req,res) {
+    // TODO: Pull all users based on closely matched
+    res.render("search")
 });
 
-router.get('/Login' ,function (req,res) {
-    res.render('login');
+// Sign up
+router.get('/signup', function(req,res) {
+    // TODO: just renders an empty signup page
+    res.render("signup")
 });
 
-router.get('/User', function(req,res) {
-    res.render('user');
-});
-
-router.get('/Comment', function(req,res) {
-    res.render('comment');
-});
-
-router.get('/Interest', (req,res) {
-    res.render('interest');
+// User Profiles
+router.get('/profile/:username', function(req,res) {
+    // TODO: renders the profile with all the user data
+    res.render("profile");
 });
 
 module.exports = router;
