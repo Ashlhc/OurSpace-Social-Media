@@ -17,4 +17,4 @@ Interest.init({
     sequelize
 });
 
-module.exports=Interest
+module.exports = Interest
