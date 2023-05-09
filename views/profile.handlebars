@@ -1,29 +1,53 @@
+
+
 <main>
     <div class="profileview">
         <div class="profileimg">
-            <img src="${{profile_img}}">
+            <img src="{{profile_img}}">
         </div>
         <div class="personame">
             <p>
-                ${{fistName}}
+                {{fistName}}
                 <br>
-                ${{lastName}}
+                {{lastName}}
             </p>
         </div>
         <div class="bio">
-            <p>${{bio}}</p>
+            <p>{{bio}}</p>
         </div>
     </div>
     
-    <div class="friends">
-
-    </div>
+    {{!-- <div class="friends">
+        <div class="friend-data">
+            {{#each Friend as |Friend|}}
+            {{> friend.details}}
+            {{/each}}
+        </div>
+    </div> --}}
 
     <div class="interests">
-
+        <div class="interests-title">
+            {{name}}
+        </div>
+    {{!-- <ul class="interests-lists">
+        <li> interest 1 </li>
+    </ul> --}}
     </div>
 
     <div class="wall">
-
+        <div class="wall-nav">
+            <p>{{username}}</p>
+            <div class="user-post">
+                <form>
+                    <input type="text" placeholder="Tell us what's on your mind" id="make-post">
+                </form>
+                <button class="user-post-btn">Post</button>
+            </div>
+        </div>
+        <div class="timeline">
+            <div class="friends-post">
+                
+            </div>
+        </div>
     </div>
 </main>
