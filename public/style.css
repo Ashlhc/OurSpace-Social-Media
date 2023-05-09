@@ -46,13 +46,13 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+header form {
+    padding-right: 30px;
+}
 input{
 	padding: 4px;
 	border: 1px solid black;
 	border-radius: 5px;
-}
-header form {
-    padding-right: 30px;
 }
 .accent-btn {
     background-color: var(--accent);
@@ -73,10 +73,35 @@ header form {
 	left: 25%;
 	color: var(--primary-dark);
 }
+.big-btn {
+	font-size: 30px;
+	padding: 10px;
+}
+.buttons-login{
+	width: 250px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.forgot-password {
+	font-size: 20px;
+	padding-top: 20px;
+}
+.form-input {
+	padding: 10px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+.input-label {
+	font-size: 18px;
+	color: var(--primary-dark);
+}
 .login {
 	display: flex;
 	flex-direction: column;
 	padding-bottom: 20px;
+	padding-top: 100px;
 	justify-content: space-around;
 }
 .login-section {
@@ -85,6 +110,18 @@ header form {
 	align-items: center;
 	height: calc(100vh - 50px);
 	flex-direction: column;
+}
+.sign-in-section {
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 50px;
+	flex-direction: row;
+	width: 55%;
+	padding-left: 80px;
+}
+.sign-in-section input {
+	margin-left: 4px;
 }
 .sign-up {
 	display: flex;
@@ -95,6 +132,11 @@ header form {
 	align-items: flex-end;
 	width: 100%;
 }
+.sign-up-requirement {
+    color: red;
+    font-style: italic;
+	font-size: 12px;
+}
 .sign-up-section {
     display: flex;
 	justify-content: center;
@@ -102,28 +144,6 @@ header form {
 	height: calc(100vh - 50px);
 	flex-direction: column;
 	width: 55%;
-	/* position: absolute;
-	left: -45vw;
-	top: 15vh; */
-}
-.sign-up-requirement {
-    color: red;
-    font-style: italic;
-	font-size: 12px;
-}
-.form-input {
-	padding: 10px 0;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-}
-.big-btn {
-	font-size: 30px;
-	padding: 10px;
-}
-.input-label {
-	font-size: 18px;
-	color: var(--primary-dark);
 }
 #header-brand {
     font-size: 40px;
