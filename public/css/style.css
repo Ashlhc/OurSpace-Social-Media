@@ -96,6 +96,9 @@ input{
 	justify-content: space-between;
 	align-items: center;
 }
+.cancel {
+	/* TODO: add styling for cancel button */
+}
 .forgot-password {
 	font-size: 20px;
 	padding-top: 20px;
@@ -108,6 +111,9 @@ input{
 }
 .full-name {
 	color: rgb(105, 105, 105);
+}
+.hide {
+	display: hidden;
 }
 .input-label {
 	font-size: 18px;
@@ -126,6 +132,12 @@ input{
 	align-items: center;
 	height: calc(100vh - 50px);
 	flex-direction: column;
+}
+.no-results{
+	/* TODO: add styling */
+}
+.save {
+	/* TODO: add styling for save button */
 }
 .search-result {
 	display: flex;
