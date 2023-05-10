@@ -22,7 +22,6 @@ router.get('/search/:username', function(req,res) {
     })
     .then(searchedUsers=>{
         const users = searchedUsers.map((user)=>user.get({plain:true}));
-        console.log(users)
         res.render("search",{users})
     })
     .catch(err=>{
@@ -43,8 +42,18 @@ router.get('/profile/:username', function(req,res) {
     User.findOne({
         where: {
             username: req.params.username
+        },
+        include: [{
+            model: Post,
+            include: {
+                model: Comment
+            }
+        },
+        {
+            model: User,
+            as: "Friend"
         }
-    })
+    ]})
     .then(userProfile=>{
         res.json(userProfile)
     })
