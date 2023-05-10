@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const bcrypt = require('bcrypt');
 const { User } = require('../../models');
 
 // GET ROUTE - ALL
@@ -114,6 +115,54 @@ router.post("/:userId/newfriend/:friendId", (req,res)=> {
       console.log(err);
       res.status(500).json({error: err});
   });
+});
+
+// POST ROUTE - LOGIN
+// JSON FORMAT
+// username
+// password
+router.post("/login", async (req,res)=>{
+  try {
+    const userData = await User.findOne({
+      where: {
+        username: req.body.username
+      }
+    });
+
+    if(!userData) {
+      res.status(400).json({msg:"Incorrect username or password"});
+      return;
+    }
+
+    const validPassword = await userData.checkPassword(req.body.password);
+
+    if(!validPassword) {
+      res.status(400).json({msg:"Incorrect username or password"});
+      return;
+    }
+
+    req.session.save(()=>{
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+
+      res.json({user: userData, message: "Logged In!"})
+    })
+
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({msg:"error occured",err})
+  }
+});
+
+// POST ROUTE - LOGOUT
+router.post("/logout",(req,res)=>{
+  if (req.session.logged_in) {
+    res.session.destroy(()=>{
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
 });
 
 // UPDATE ROUTE

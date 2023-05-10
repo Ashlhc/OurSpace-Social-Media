@@ -75,7 +75,10 @@ router.get('/profile/:username', function(req,res) {
         }
     ]})
     .then(userProfile=>{
-        res.json(userProfile);
+        const user = userProfile.get({plain:true});
+        const currentUser = true
+        console.log({user,currentUser})
+        res.render("profile",{user,currentUser})
     })
 });
 
