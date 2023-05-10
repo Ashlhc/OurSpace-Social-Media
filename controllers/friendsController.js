@@ -12,13 +12,13 @@ router.get("/:userId/friends", (req,res)=>{
     })
     .then((user)=>{
         if(!user) {
-            return res.status(404).json({msg: "No User found"});
+            return res.status(404).json({error: err});
         }
         res.json(user.friends);
     })
     .catch((err)=> {
         console.log(err);
-        res.status(500).json({msg: "Error",err});
+        res.status(500).json({error: err});
     });
 });
 
@@ -26,36 +26,36 @@ router.post("/:userId/newfriend", (req,res)=> {
     User.findByPk(req.params.userId)
     .then((user)=> {
         if(!user) {
-            return res.status(404).json({ msg: "No User found"});
+            return res.status(404).json({error: err});
         }
         User.findByPk(req.params.friendId)
         .then((friends)=> {
             if (!friends) {
-                return res.status(404).json({msg: "No Friends found"});
+                return res.status(404).json({error: err});
             }
             user.addFriend(friends);
             res.json({msg:"Friend added!"});
         })
         .catch((err)=> {
             console.log(err);
-            res.status(500).json({msg:"Error adding friend", err});
+            res.status(500).json({error: err});
         });
     })
     .catch((err)=> {
         console.log(err);
-        res.status(500).json({msg:"Error finding user", err});
+        res.status(500).json({error: err});
     });
 });
 router.delete("/:userId/friends/:friendId", (req,res)=> {
     User.findByPk(req.params.userId)
     .then((user)=> {
         if(!user) {
-            return res.status(404).json({msg:"No User found"})
+            return res.status(404).json({error: err});
         }
         User.findByPk(req.params.friendId)
         .then((friend)=> {
             if(!friend) {
-                return res.status(404).json({msg:"No Friend found"});
+                return res.status(404).json({error: err});
             }
             user.removeFriend(friend);
             res.json({msg:"Friend Removed"});
@@ -63,7 +63,7 @@ router.delete("/:userId/friends/:friendId", (req,res)=> {
     })
     .catch((err)=> {
         console.log(err);
-        res.status(500).json({msg:"Error finding user",err});
+        res.status(500).json({error: err});
     });
 });
 
