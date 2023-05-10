@@ -14,17 +14,18 @@
 
 <body>
     <header>
-        <a href="#">OURspace</a>
-        <form>
+        <a href="/">OURspace</a>
+        <form id="search">
             <input type="text" placeholder="find user" id="find-user">
             <button class="accent btn" id="find-user-btn">Search</button>
         </form>
-        {{!-- TODO: create a log out button that only appears when logged in --}}
+        {{!-- TODO: create a log out button that only appears when logged in in 'public/js/index.js' --}}
     </header>
 
     <main>
         {{{body}}}
     </main>
-<script src="/public/js/index.js"></script>
+<script src="/js/script.js"></script>
+<script src="/js/login.js"></script>
 </body>
 </html>

@@ -5,18 +5,19 @@
         </div>
         <div class="personname">
             <p>
-                {{first_name}}
+                {{fist_name}}
                 <br>
                 {{last_name}}
             </p>
         </div>
+        {{!-- TODO: create logic for add friend button: 
+                        - if user is not on your friends list, show add friend button --}}
         <div class="bio" id="bio">
-            <p>{{bio}}</p>
+            <pre>{{bio}}</pre>
         </div>
-        <form></form>
     </div>
-    
-    <div class="Friends">
+
+    <div class="friends">
         <div class="friend-data">
             {{#each Friend as |Friend|}}
           {{profile_img}}
@@ -64,6 +65,8 @@
                     <p>{{text}}</p>
                     {{!-- {{#if is CurrentUser}} --}}
                 </div>
+                {{/each}}
             </div>
         {{/each}}
     </div>
+</div>
