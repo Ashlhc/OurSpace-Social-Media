@@ -4,6 +4,24 @@ const { Op } = require("sequelize");
 
 const { Comment, Interest, Post, User } = require("../models");
 
+// TEST LOGIN ROUTES FOR FRONT-END TEAM
+router.get("/test/login",(req,res)=>{
+    res.render("login");
+})
+
+router.get("/test/profile",(req,res)=>{
+    res.render("profile");
+})
+
+router.get("/test/search",(req,res)=>{
+    res.render("search");
+})
+
+router.get("/test/signup",(req,res)=>{
+    res.render("signup");
+})
+// END TEST ROUTES
+
 // Login/Home Page
 router.get('/', function(req,res) {
     // TODO: check if user is logged in. If so, redirect to their profile
@@ -51,11 +69,11 @@ router.get('/profile/:username', function(req,res) {
         },
         {
             model: User,
-            as: "Friend"
+            as: "Friends"
         }
     ]})
     .then(userProfile=>{
-        res.json(userProfile)
+        res.json(userProfile);
     })
 });
 

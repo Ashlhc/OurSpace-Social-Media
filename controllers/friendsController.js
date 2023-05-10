@@ -6,7 +6,7 @@ router.get("/:userId/friends", (req,res)=>{
         where: { id: req.params.userId},
         include: {
             model: User,
-            as: "friends",
+            as: "Friends",
             attributes: ["id", "username", "first_name", "last_name"],
         },
     })
@@ -22,7 +22,7 @@ router.get("/:userId/friends", (req,res)=>{
     });
 });
 
-router.post("/:userId/newfriend", (req,res)=> {
+router.post("/:userId/newfriend/:friendId", (req,res)=> {
     User.findByPk(req.params.userId)
     .then((user)=> {
         if(!user) {
@@ -46,6 +46,7 @@ router.post("/:userId/newfriend", (req,res)=> {
         res.status(500).json({error: err});
     });
 });
+
 router.delete("/:userId/friends/:friendId", (req,res)=> {
     User.findByPk(req.params.userId)
     .then((user)=> {

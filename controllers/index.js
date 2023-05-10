@@ -39,5 +39,6 @@ const htmlController = require('./htmlController');
 
 router.use("/api",apiRoutes);
 router.use(htmlController);
+router.use(require("./friendsController"));
 
 module.exports = router;
