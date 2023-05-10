@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
   try {
     const user = await User.findByPk(author_id);
     if (!user) {
-      return res.status(404).json({error: err});
+      return res.status(404).json({ error: 'No User with this ID found.' });
     }
     const interest = await Interest.create({ text, author_id, post_id });
     res.status(201).json(interest);
