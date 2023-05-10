@@ -6,7 +6,7 @@ const { Comment, Interest, Post, User } = require("../models");
 
 // Login/Home Page
 router.get('/', function(req,res) {
-    const cookie = req.session.map(item=>item.get({plain:true}));
+    const cookie = req.session
     res.render("login",{cookie: cookie})
 });
 
@@ -22,7 +22,7 @@ router.get('/search/:username', function(req,res) {
     })
     .then(searchedUsers=>{
         const users = searchedUsers.map((user)=>user.get({plain:true}));
-        const cookie = req.session.map(item=>item.get({plain:true}));
+        const cookie = req.session
         res.render("search",{user: users, cookie: cookie})
     })
     .catch(err=>{
@@ -33,7 +33,7 @@ router.get('/search/:username', function(req,res) {
 
 // Sign up
 router.get('/signup', function(req,res) {
-    const cookie = req.session.map(item=>item.get({plain:true}));
+    const cookie = req.session
     res.render("signup",{cookie: cookie})
 });
 
@@ -63,8 +63,9 @@ router.get('/profile/:username', function(req,res) {
         if(user.id===req.session.user_id) {
             currentUser = true;
         }
-        const cookie = req.session.map(item=>item.get({plain:true}));
-        res.render("profile",{user: user,currentUser, cookie: cookie})
+        const cookie = req.session
+        console.log({user: user, currentUser, cookie: cookie})
+        res.render("profile",{user: user, currentUser, cookie: cookie})
     })
 });
 
