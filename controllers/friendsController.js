@@ -6,7 +6,7 @@ router.get("/:userId/friends", (req,res)=>{
         where: { id: req.params.userId},
         include: {
             model: User,
-            as: "Friends",
+            as: "friends",
             attributes: ["id", "username", "first_name", "last_name"],
         },
     })
