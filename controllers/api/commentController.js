@@ -19,12 +19,12 @@ router.get('/:id', async (req, res) => {
   try {
     const comment = await Comment.findByPk(id, { include: Post, User });
     if (!comment) {
-      res.status(404).json({ error: 'No Comment with this ID found.' });
+      res.status(404).json({error: err});
     }
     res.status(200).json(comment);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Unable to get comment with this ID.' });
+    res.status(500).json({error: err});
   }
 });
 
@@ -38,13 +38,13 @@ router.post('/', async (req, res) => {
   try {
     const user = await User.findByPk(author_id);
     if (!user) {
-      return res.status(404).json({ error: 'No User with this ID found.' });
+      return res.status(404).json({error: err});
     }
     const comment = await Comment.create({ text, author_id, post_id });
     res.status(201).json(comment);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Unable to create comment.' });
+    res.status(500).json({error: err});
   }
 });
 
@@ -55,14 +55,14 @@ router.put('/:id', async (req, res) => {
   try {
     const comment = await Comment.findByPk(id);
     if (!comment) {
-      return res.status(404).json({ error: 'No Comment with this ID found.' });
+      return res.status(404).json({error: err});
     }
     comment.text = text;
     await comment.save();
     res.status(200).json(comment);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Unable to update comment with this ID.' });
+    res.status(500).json({error: err});
   }
 });
 
@@ -72,13 +72,13 @@ router.delete('/:id', async (req, res) => {
   try {
     const comment = await Comment.findByPk(id);
     if (!comment) {
-      return res.status(404).json({ error: 'No Comment with this ID found.' });
+      return res.status(404).json({error: err});
     }
     await comment.destroy();
     res.status(204).end();
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Unable to delete comment with this ID.' });
+    res.status(500).json({error: err});
   }
 });
 

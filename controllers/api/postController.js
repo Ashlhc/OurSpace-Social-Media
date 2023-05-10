@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     res.status(200).json(posts);
   } catch (err) {
     console.error(err);
-    res.status(500).json(err);
+    res.status(500).json({error: err});
   }
 });
 
@@ -19,12 +19,12 @@ router.get('/:id', async (req, res) => {
   try {
     const posts = await Post.findByPk(id, { include: User });
     if (!posts) {
-      res.status(404).json({ error: 'Post with ID not found.' });
+      res.status(404).json({error: err});
     }
     res.status(200).json(posts);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Not able to get Post with ID.' });
+    res.status(500).json({error: err});
   }
 });
 
@@ -38,13 +38,13 @@ router.post('/', async (req, res) => {
   try {
     const user = await User.findByPk(author_id);
     if (!user) {
-      return res.status(404).json({ error: 'User with ID not found.' });
+      return res.status(404).json({error: err});
     }
     const posts = await Post.create({ title, body, UserId: author_id });
     res.status(201).json(posts);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Not able to create Post.' });
+    res.status(500).json({error: err});
   }
 });
 
@@ -58,14 +58,14 @@ router.put('/:id', async (req, res) => {
   try {
     const posts = await Post.findByPk(id);
     if (!posts) {
-      return res.status(404).json({ error: 'Post with ID not found.' });
+      return res.status(404).json({error: err});
     }
     posts.text = text;
     await posts.save();
     res.status(200).json(posts);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Not able to update Post with ID.' });
+    res.status(500).json({error: err});
   }
 });
 
@@ -75,13 +75,13 @@ router.delete('/:id', async (req, res) => {
   try {
     const posts = await Post.findByPk(id);
     if (!posts) {
-      return res.status(404).json({ error: 'Post with ID not found.' });
+      return res.status(404).json({error: err});
     }
     await posts.destroy();
     res.status(204).end();
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Not able to delete Post with ID.' });
+    res.status(500).json({error: err});
   }
 });
 
