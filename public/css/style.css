@@ -25,8 +25,8 @@
     --edit-hover: rgb(200,100,0);
     --edit-text-hover: rgb(201, 154, 0);
 
-	--add-Friends: rgb(72, 197, 72);
-	--add-Friends-hover: rgb(39, 151, 39);
+	--add-friend: rgb(72, 197, 72);
+	--add-friend-hover: rgb(39, 151, 39);
 }
 * {
     margin: 0;
@@ -48,11 +48,13 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+	padding-left: 30px;
+	padding-right: 30px;
 }
-header form {
-    padding-right: 30px;
-}
-input{
+/* header form {
+    
+} */
+input {
 	padding: 4px;
 	border: 1px solid black;
 	border-radius: 5px;
@@ -60,7 +62,7 @@ input{
 .accent {
 	background-color: var(--accent);
 }
-.accent:hover{
+.accent:hover {
 	background-color: var(--accent-hover);
 }
 .add-friend {
@@ -77,6 +79,7 @@ input{
 }
 .btn:hover {
     color: var(--accent-text-hover);
+	cursor: pointer;
 }
 .big-brand {
 	font-size: 10vw;
@@ -90,15 +93,15 @@ input{
 	font-size: 30px;
 	padding: 10px;
 }
-.buttons-login{
+.buttons-login {
 	width: 250px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
-.cancel {
-	/* TODO: add styling for cancel button */
-}
+/* .cancel {
+	TODO: add styling for cancel button
+} */
 .forgot-password {
 	font-size: 20px;
 	padding-top: 20px;
@@ -109,8 +112,37 @@ input{
 	flex-direction: column;
 	align-items: flex-end;
 }
+.friend-data {
+	display: flex;
+	flex-direction: column;
+	height: 140px;
+	width: 120px;
+	overflow: hidden;
+	border: 2px solid purple;
+	margin: 5px;
+	padding: 5px;
+}
+.friends {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid purple;
+	margin: 5px;
+}
+.friends-data {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.friends-and-interests {
+	display: flex;
+	flex-direction: row;
+}
 .full-name {
 	color: rgb(105, 105, 105);
+}
+.header-title {
+	font-size: 30px;
+	color: white;
 }
 .hide {
 	display: hidden;
@@ -118,6 +150,19 @@ input{
 .input-label {
 	font-size: 18px;
 	color: var(--primary-dark);
+}
+.interest {
+	display: flex;
+	flex-direction: row;
+	background-color: lightblue;
+	border: 2px solid gray;
+}
+.interests {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid purple;
+	margin: 5px;
+	padding: 5px;
 }
 .login {
 	display: flex;
@@ -133,12 +178,32 @@ input{
 	height: calc(100vh - 50px);
 	flex-direction: column;
 }
-.no-results{
-	/* TODO: add styling */
+.log-out {
+	background-color: salmon;
 }
-.save {
-	/* TODO: add styling for save button */
+/* .no-results {
+	TODO: add styling
+} */
+.profile-assets {
+	display: flex;
+	flex-direction: column;
 }
+.profile-page {
+	display: flex;
+	flex-direction: row;
+	margin: 10px 10px 0 10px ;
+	border: 2px solid purple;
+	padding: 10px;
+}
+.profile-sidebar {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid purple;
+	margin: 5px;
+}
+/* .save {
+	TODO: add styling for save button
+} */
 .search-result {
 	display: flex;
 	border: 2px solid rgb(201, 201, 201);
@@ -199,6 +264,12 @@ input{
 }
 .user-match a {
 	font-size: 20px;
+}
+.wall {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid purple;
+	margin: 5px;
 }
 #header-brand {
     font-size: 40px;
