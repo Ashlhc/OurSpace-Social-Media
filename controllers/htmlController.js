@@ -23,7 +23,8 @@ router.get('/search/:username', function(req,res) {
     .then(searchedUsers=>{
         const users = searchedUsers.map((user)=>user.get({plain:true}));
         const cookie = req.session
-        res.render("search",{user: users, cookie: cookie})
+        console.log({user: users, cookie: cookie})
+        res.render("search",{users: users, cookie: cookie})
     })
     .catch(err=>{
         console.log(err);

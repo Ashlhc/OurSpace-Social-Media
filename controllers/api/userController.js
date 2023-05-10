@@ -2,6 +2,18 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const { User } = require('../../models');
 
+
+// POST ROUTE - LOGOUT
+router.post("/logout",(req,res)=>{
+  if (req.session.logged_in) {
+    req.session.destroy(()=>{
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+
 // GET ROUTE - ALL
 router.get('/', async (req, res) => {
   try {
@@ -36,7 +48,7 @@ router.get('/:id', async (req, res) => {
   try {
     const user = await User.findByPk(id);
     if (!user) {
-      return res.status(404).json({error: err});
+      return res.status(404).json("");
     }
     res.json(user);
   } catch (err) {
@@ -154,16 +166,6 @@ router.post("/login", async (req,res)=>{
   }
 });
 
-// POST ROUTE - LOGOUT
-router.post("/logout",(req,res)=>{
-  if (req.session.logged_in) {
-    res.session.destroy(()=>{
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
 
 // UPDATE ROUTE
 router.put('/:id', async (req, res) => {

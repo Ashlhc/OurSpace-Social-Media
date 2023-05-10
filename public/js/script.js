@@ -1,10 +1,25 @@
-// TODO: add universal code if needed. 
-// TODO: add logout logic
+// Search
+const search = document.querySelector("#search");
 
-// Search Functionality
 search.addEventListener("submit",function(event) {
-    const search = document.querySelector("#search");
-    const userSearch = document.querySelector("#search input").value;
     event.preventDefault();
+
+    const userSearch = document.querySelector("#search input").value;
     window.location.href = `/search/${userSearch}`
 });
+
+// Logout
+const logoutBtn = document.querySelector("#logout-btn");
+
+if (logoutBtn) {
+logoutBtn.addEventListener("click",async function(event){
+    event.preventDefault();
+
+    const logoutResponse = await fetch("/api/users/logout",{
+        method: "POST"
+    })
+    if (logoutResponse.ok){
+        window.location.href = '/'
+    }
+})
+}
