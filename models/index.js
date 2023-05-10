@@ -2,6 +2,7 @@ const User = require('./User');
 const Post = require('./Post');
 const Interest = require('./Interest');
 const Comment = require('./Comment');
+const Option = require('./Option');
 
 // One-To-Many from Users [One] --> Posts [Many]
 Post.belongsTo(User,{
@@ -30,7 +31,16 @@ User.hasMany(Interest,{
     },
     onDelete: "CASCADE"
 });
-
+Option.belongsTo(Interest,{
+    foreignKey: {
+        allowNull: true
+    },
+});
+Interest.hasMany(Option,{
+    foreignKey: {
+        allowNull: true
+    },
+});
 // One-To-Many from Users [One] --> Comments [Many]
 Comment.belongsTo(User,{
     foreignKey: {
@@ -69,5 +79,6 @@ module.exports = {
     User:User,
     Post:Post,
     Interest:Interest,
-    Comment:Comment
+    Comment:Comment,
+    Option:Option
 }
