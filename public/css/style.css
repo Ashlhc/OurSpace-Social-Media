@@ -25,8 +25,8 @@
     --edit-hover: rgb(200,100,0);
     --edit-text-hover: rgb(201, 154, 0);
 
-	--add-friend: rgb(72, 197, 72);
-	--add-friend-hover: rgb(39, 151, 39);
+	--add-Friends: rgb(72, 197, 72);
+	--add-Friends-hover: rgb(39, 151, 39);
 }
 * {
     margin: 0;
