@@ -44,7 +44,6 @@ editProfile.addEventListener('click', function() {
     // effectively changes the bio from a <p> tag to a form text input using the varibles defined above
     bio.parentNode.replaceChild(bioInput, bio);
 
-    // TODO: convert the code to use the appendChild() method
     // places cancel and save button after the newly created bioInput element
     bioInput.insertAdjacentElement('afterend', saveBtn);
     bioInput.insertAdjacentElement('afterend', cancelBtn);
