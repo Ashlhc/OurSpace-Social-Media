@@ -1,6 +1,4 @@
 
-
-<main>
     <div class="profileview">
         <div class="profileimg">
             <img src="{{profile_img}}">
@@ -15,6 +13,7 @@
         <div class="bio">
             <p>{{bio}}</p>
         </div>
+        <form></form>
     </div>
     
     {{!-- <div class="friends">
@@ -37,17 +36,41 @@
     <div class="wall">
         <div class="wall-nav">
             <p>{{username}}</p>
-            <div class="user-post">
+        {{#each Posts}}
+            <div class="post">
+                <p>
+                    {{title}}
+                    {{body}}
+                </p>
+                {{#if is CurrentUser}} 
+                <form>
+                    <input type="text" name="comment" placeholder="Add a comment...">
+                <button class="edit-cmt-btn">Edit</button>
+                <button class="delete-cmt-btn">Delete</button>
+                <button type="submit">Post</button>
+                </form>
+                {{/if}}
+                {{#each comments}}
+                <div class="comment">
+                    <p>{{text}}</p>
+                    {{#if is CurrentUser}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+
+            {{!-- <div class="user-post">
                 <form>
                     <input type="text" placeholder="Tell us what's on your mind" id="make-post">
                 </form>
                 <button class="user-post-btn">Post</button>
             </div>
         </div>
+
         <div class="timeline">
-            <div class="friends-post">
-                
-            </div>
-        </div>
-    </div>
-</main>
+            <p class="friends-post">
+                {{timestamp}} {{username}}: {{title}}
+                {{body}}
+            </p>
+        </div> --}}
