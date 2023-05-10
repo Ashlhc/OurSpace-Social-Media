@@ -33,9 +33,11 @@
     <button class="deletebtn">Delete</button>
     </div>
 
+{{#if currentUser}}
     <div class="edit-prof btn">
         <button>Edit Profile</button>
     </div>
+{{/if}}
 {{!-- where all posts and comments are held --}}
     <div class="wall">
         <div class="wall-nav">
@@ -52,7 +54,7 @@
                     {{body}}
                 </p>
                 {{timestamp}}
-                {{#if is CurrentUser}} 
+                {{#if is currentUser}} 
                 <form>
                     <input type="text" name="comment" placeholder="Add a comment...">
                     <button class="edit-cmt btn">Edit</button>
@@ -63,7 +65,7 @@
                 {{#each comments}}
                 <div class="comment">
                     <p>{{text}}</p>
-                    {{!-- {{#if is CurrentUser}} --}}
+                    {{!-- {{#if is currentUser}} --}}
                 </div>
                 {{/each}}
             </div>
