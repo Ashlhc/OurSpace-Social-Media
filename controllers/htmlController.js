@@ -6,7 +6,8 @@ const { Comment, Interest, Post, User } = require("../models");
 
 // Login/Home Page
 router.get('/', function(req,res) {
-    res.render("login")
+    const cookie = req.session.map(item=>item.get({plain:true}));
+    res.render("login",{cookie: cookie})
 });
 
 // Search
@@ -21,7 +22,8 @@ router.get('/search/:username', function(req,res) {
     })
     .then(searchedUsers=>{
         const users = searchedUsers.map((user)=>user.get({plain:true}));
-        res.render("search",{users})
+        const cookie = req.session.map(item=>item.get({plain:true}));
+        res.render("search",{user: users, cookie: cookie})
     })
     .catch(err=>{
         console.log(err);
@@ -31,7 +33,8 @@ router.get('/search/:username', function(req,res) {
 
 // Sign up
 router.get('/signup', function(req,res) {
-    res.render("signup")
+    const cookie = req.session.map(item=>item.get({plain:true}));
+    res.render("signup",{cookie: cookie})
 });
 
 // User Profiles
@@ -60,7 +63,8 @@ router.get('/profile/:username', function(req,res) {
         if(user.id===req.session.user_id) {
             currentUser = true;
         }
-        res.render("profile",{user,currentUser})
+        const cookie = req.session.map(item=>item.get({plain:true}));
+        res.render("profile",{user: user,currentUser, cookie: cookie})
     })
 });
 
