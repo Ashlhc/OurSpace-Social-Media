@@ -35,7 +35,7 @@ signUpButton.addEventListener('click', (event) => {
     firstnameInput.value = '';
     lastnameInput.value = '';
     passwordInput.value = '';
-    confirm_passwordInput = '';
+    confirm_passwordInput.value = '';
 
     alert('You did it!!');
     });
