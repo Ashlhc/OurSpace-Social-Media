@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User } = require('../../models');
 
 router.get('/', async (req, res) => {
   try {
@@ -7,63 +7,92 @@ router.get('/', async (req, res) => {
     res.json(users);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Unable to get User with this ID'});
+    res.status(500).json({ error: err});
   }
 });
+
+router.get("/users",(req,res)=>{
+  User.findAll({
+      include: {
+          model: User,
+          as: "friend"
+      }
+  })
+  .then(allUsers=>{
+      res.json(allUsers);
+  })
+  .catch(err=>{
+      console.log(err);
+      res.status(500).json({error: err});
+  });
+})
 
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
     const user = await User.findByPk(id);
     if (!user) {
-      return res.status(404).json({ message: 'No User found with this ID' });
+      return res.status(404).json({error: err});
     }
     res.json(user);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Unable to get User with this ID'});
+    res.status(500).json({ error: err});
   }
 });
 
 router.post('/', async (req, res) => {
-  const { userName, firstName, lastName, password, profile_img, bio } = req.body;
+  const { username, first_name, last_name, password, profile_img, bio } = req.body;
   try {
     const newUser = await User.create({
-      userName,
-      firstName,
-      lastName,
+      username,
+      first_name,
+      last_name,
       password,
       profile_img,
-      bio,
+      bio
     });
     res.status(201).json(newUser);
   } catch (err) {
     console.error(err);
-    res.status(500).json({error: 'Unable to create User.'});
+    res.status(500).json({error: err});
   }
 });
 
+router.post("/addFriend",(req,res)=>{
+  User.addFriend({
+      UserId: req.body.user_id,
+      FriendId: req.body.friend_id
+  })
+  .then(addFriend=>{
+      res.json(addFriend)
+  })
+  .catch(err=>{
+      console.log(err);
+      res.status(500).json({error: err});
+  });
+})
 
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
-  const { userName, firstName, lastName, password, profile_img, bio } = req.body;
+  const { username, first_name, last_name, password, profile_img, bio } = req.body;
   try {
     const user = await User.findByPk(id);
     if (!user) {
-      return res.status(404).json({ message: 'No User found with this ID' });
+      return res.status(404).json({error: err});
     }
     const updatedUser = await user.update({
-      userName,
-      firstName,
-      lastName,
+      username,
+      first_name,
+      last_name,
       password,
       profile_img,
-      bio,
+      bio
     });
     res.json(updatedUser);
   } catch (err) {
     console.error(err);
-    res.status(500).json(err);
+    res.status(500).json({error: err});
   }
 });
 
@@ -73,13 +102,13 @@ router.delete('/:id', async (req, res) => {
   try {
     const user = await User.findByPk(id);
     if (!user) {
-      return res.status(404).json({ message: 'no user found' });
+      return res.status(404).json(err);
     }
     await user.destroy();
     res.json({ message: 'User deleted' });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'error' });
+    res.status(500).json({error: err});
   }
 });
 
