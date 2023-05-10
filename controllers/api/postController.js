@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { Post, User } = require('../../models');
+const { Post, User, Comment } = require('../../models');
 
 // GET ROUTE - ALL
 router.get('/', async (req, res) => {
   try {
-    const posts = await Post.findAll({ include: User });
+    const posts = await Post.findAll({ include: [User, Comment] });
     res.status(200).json(posts);
   } catch (err) {
     console.error(err);
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
-    const posts = await Post.findByPk(id, { include: User });
+    const posts = await Post.findByPk(id, { include: [User, Comment] });
     if (!posts) {
       res.status(404).json({error: err});
     }

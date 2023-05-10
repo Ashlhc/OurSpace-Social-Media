@@ -5,7 +5,8 @@ const { Comment, Post, User } = require('../../models');
 // GET ROUTE - ALL
 router.get('/', async (req, res) => {
   try {
-    const comments = await Comment.findAll({ include: Post, User });
+    const comments = await Comment.findAll({
+      include: [Post, User] });
     res.status(200).json(comments);
   } catch (err) {
     console.error(err);
@@ -17,7 +18,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
-    const comment = await Comment.findByPk(id, { include: Post, User });
+    const comment = await Comment.findByPk(id, { include: [Post, User] });
     if (!comment) {
       res.status(404).json({error: err});
     }
@@ -40,7 +41,11 @@ router.post('/', async (req, res) => {
     if (!user) {
       return res.status(404).json({error: err});
     }
-    const comment = await Comment.create({ text, author_id, post_id });
+    const comment = await Comment.create({
+      text,
+      UserId: author_id,
+      PostId :post_id
+    });
     res.status(201).json(comment);
   } catch (err) {
     console.error(err);
