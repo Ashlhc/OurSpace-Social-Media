@@ -1,4 +1,4 @@
-// TODO: create logic to handle succesful and unsuccessful logic
+// TODO: create logic to handle succesful and unsuccessful sign up
 document.addEventListener('DOMContentLoaded', () => {
 const usernameInput = document.getElementById('create-username');
 const firstnameInput = document.getElementById('create-first_name');
