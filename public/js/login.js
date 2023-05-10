@@ -1,5 +1,7 @@
 const loginBtn = document.querySelector("#login-btn");
 
+if (loginBtn) {
+
 loginBtn.addEventListener("click",async function(event) {
     event.preventDefault();
 
@@ -25,3 +27,5 @@ loginBtn.addEventListener("click",async function(event) {
         }
     }
 });
+
+}

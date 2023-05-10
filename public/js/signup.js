@@ -1,44 +1,67 @@
-// TODO: create logic to handle succesful and unsuccessful logic
 document.addEventListener('DOMContentLoaded', () => {
-const usernameInput = document.getElementById('create-username');
-const firstnameInput = document.getElementById('create-first_name');
-const lastnameInput = document.getElementById('create-last_name');
-const passwordInput = document.getElementById('create-password');
-const confirm_passwordInput = document.getElementById('confirm-password');
-const signUpButton = document.getElementById('sign-up');
+const signupBtn = document.querySelector("#sign-up");
 
-signUpButton.addEventListener('click', (event) => {
+if (signupBtn) {
+
+signupBtn.addEventListener('click', async function(event) {
     event.preventDefault();
     
-    const usernameValue = usernameInput.value;
-    const firstnameValue = firstnameInput.value;
-    const lastnameValue = lastnameInput.value;
-    const passwordValue = passwordInput.value;
-    const confirmpasswordValue = confirm_passwordInput.value;
-
-    if(!usernameValue || !firstnameValue || !lastnameValue || !passwordValue || !confirmpasswordValue) {
+    const usernameInput = document.querySelector('#create-username').value.trim();
+    const firstNameInput = document.querySelector('#create-firstname').value.trim();
+    const lastNameInput = document.querySelector('#create-lastname').value.trim();
+    const passwordInput = document.querySelector('#create-password').value.trim();
+    const confirmPasswordInput = document.querySelector('#confirm-password').value.trim();
+        
+    if(!usernameInput || !firstNameInput || !lastNameInput || !passwordInput || !confirmPasswordInput) {
         alert('Must fill in all fields');
         return;
     }
 
-    if(passwordValue.length < 8 ) {
+    if(passwordInput.length < 8 ) {
         alert('Password must be at least 8 characters long.');
         return;
     }
 
-    if (passwordValue !== confirmpasswordValue) {
+    if (passwordInput !== confirmPasswordInput) {
         alert('Password and Confirm Password must match');
         return;
     }
 
-    usernameInput.value = '';
-    firstnameInput.value = '';
-    lastnameInput.value = '';
-    passwordInput.value = '';
-    confirm_passwordInput = '';
+    const signup = await fetch("api/users",{
+        method: "POST",
+        body: JSON.stringify({
+            username: usernameInput,
+            first_name: firstNameInput,
+            last_name: lastNameInput,
+            password: passwordInput 
+        }),
+        headers:{
+            "Content-Type": "application/json"
+        }
+    })
 
-    alert('You did it!!');
-    });
+    if (signup.ok) {
+        const loginResponse = await fetch("/api/users/login",{
+            method: "POST",
+            body: JSON.stringify({
+                username: usernameInput,
+                password: passwordInput
+            }),
+            headers:{
+                "Content-Type": "application/json"
+            }
+        })
+
+        if(loginResponse.ok) {
+            window.location.href = `/profile/${usernameInput}`
+        } else {
+            console.log("oops");
+        }
+    } else {
+        console.log("oops");
+    }
+})
+
+}
 
 });
-
