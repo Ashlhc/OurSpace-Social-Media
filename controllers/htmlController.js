@@ -4,27 +4,8 @@ const { Op } = require("sequelize");
 
 const { Comment, Interest, Post, User } = require("../models");
 
-// TEST LOGIN ROUTES FOR FRONT-END TEAM
-router.get("/test/login",(req,res)=>{
-    res.render("login");
-})
-
-router.get("/test/profile",(req,res)=>{
-    res.render("profile");
-})
-
-router.get("/test/search",(req,res)=>{
-    res.render("search");
-})
-
-router.get("/test/signup",(req,res)=>{
-    res.render("signup");
-})
-// END TEST ROUTES
-
 // Login/Home Page
 router.get('/', function(req,res) {
-    // TODO: check if user is logged in. If so, redirect to their profile
     res.render("login")
 });
 
@@ -50,13 +31,11 @@ router.get('/search/:username', function(req,res) {
 
 // Sign up
 router.get('/signup', function(req,res) {
-    // TODO: just renders an empty signup page
     res.render("signup")
 });
 
 // User Profiles
 router.get('/profile/:username', function(req,res) {
-    // TODO: include Comments, Posts, Friends, and Interests
     User.findOne({
         where: {
             username: req.params.username
@@ -70,10 +49,18 @@ router.get('/profile/:username', function(req,res) {
         {
             model: User,
             as: "Friends"
+        },
+        {
+            model: Interest
         }
     ]})
     .then(userProfile=>{
-        res.json(userProfile);
+        const user = userProfile.get({plain:true});
+        let currentUser = false;
+        if(user.id===req.session.user_id) {
+            currentUser = true;
+        }
+        res.render("profile",{user,currentUser})
     })
 });
 
