@@ -5,6 +5,7 @@ const { Op } = require("sequelize");
 const { Comment, Interest, Post, User } = require("../models");
 
 // TEST LOGIN ROUTES FOR FRONT-END TEAM
+// ==============================
 router.get("/test/login",(req,res)=>{
     res.render("login");
 })
@@ -20,6 +21,7 @@ router.get("/test/search",(req,res)=>{
 router.get("/test/signup",(req,res)=>{
     res.render("signup");
 })
+// ==============================
 // END TEST ROUTES
 
 // Login/Home Page
