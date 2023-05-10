@@ -6,12 +6,12 @@
 
     <div class="sign-in-section">
     <label for="login" class="input-label">Username</label>
-    <input type="text" id="login" />
+    <input type="text" id="username-login" />
     </div>
 
     <div class="sign-in-section">
     <label for="password" class="input-label">Password</label>
-    <input type="password" id="password" />
+    <input type="password" id="password-login" />
     </div>
 
 </form>
@@ -19,9 +19,9 @@
     {{!-- TODO: create logic for sign in button
                 -successful login navigates to profile page
                 -unsuccessful login displays an error --}}
-    <a class="accent btn big-btn" id="sign-in">log in</a>
+    <a class="accent btn big-btn" id="login-btn">log in</a>
     {{!-- TODO: when clicked, sign up button should take you to sign up page --}}
-    <a href="#sign-up" class="accent btn big-btn">sign up</a>
+    <a href="/signup" class="accent btn big-btn">sign up</a>
 </div>
 <div class="forgot-password">Forgot your password? Too bad.</div>
 </section>
