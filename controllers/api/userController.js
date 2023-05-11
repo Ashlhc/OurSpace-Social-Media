@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const { User } = require('../../models');
+const { Op } = require("sequelize");
 
 
 // POST ROUTE - LOGOUT
@@ -56,6 +57,21 @@ router.get('/:id', async (req, res) => {
     res.status(500).json({ error: err});
   }
 });
+
+// GET ROUTE - SINGULAR BY USERNAME
+router.get("/user/:username",(req,res)=>{
+  User.findOne({
+    where: {
+      username: req.params.username
+  }})
+  .then(user=>{
+    res.json(user);
+  })
+  .catch(err=>{
+    console.log(err);
+    res.status(500).json({msg:"error occured",err})
+  })
+})
 
 // GET ROUTE - SINGULAR BY ID INCLUDING FRIENDS
 router.get("/:userId/friends", (req,res)=>{

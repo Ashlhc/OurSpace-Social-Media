@@ -23,7 +23,6 @@ router.get('/search/:username', function(req,res) {
     .then(searchedUsers=>{
         const users = searchedUsers.map((user)=>user.get({plain:true}));
         const cookie = req.session
-        console.log({user: users, cookie: cookie})
         res.render("search",{users: users, cookie: cookie})
     })
     .catch(err=>{
@@ -65,7 +64,6 @@ router.get('/profile/:username', function(req,res) {
             currentUser = true;
         }
         const cookie = req.session
-        console.log({user: user, currentUser, cookie: cookie})
         res.render("profile",{user: user, currentUser, cookie: cookie})
     })
 });
