@@ -1,10 +1,11 @@
 <div class="profile-page">
 
     <div class="profile-sidebar">
-      <div class="profileimg">
+      <div class="profile-img">
+        <p class="profile-sidebar-username">{{user.username}}</p>
         <img src="{{user.profile_img}}">
       </div>
-      <div class="person-name">
+      <div class="sidebar-full-name">
         <p>
           {{user.first_name}}<br>
           {{user.last_name}}

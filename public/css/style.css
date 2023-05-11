@@ -51,13 +51,16 @@ header {
 	padding-left: 30px;
 	padding-right: 30px;
 }
-/* header form {
-    
-} */
+h3 {
+	margin: 4px;
+}
 input {
 	padding: 4px;
 	border: 1px solid black;
 	border-radius: 5px;
+}
+textarea {
+	resize: none;
 }
 .accent {
 	background-color: var(--accent);
@@ -92,6 +95,13 @@ input {
 .big-btn {
 	font-size: 30px;
 	padding: 10px;
+}
+.bio {
+	min-height: 40%;
+}
+.bio textarea {
+	min-width: 16vw;
+	min-height: 100%;
 }
 .buttons-login {
 	width: 250px;
@@ -128,9 +138,7 @@ input {
 	border: 4px solid var(--primary);
 	margin: 5px;
 }
-h3 {
-	margin: 4px;
-}
+
 .friends-data {
 	display: flex;
 	flex-direction: row;
@@ -195,7 +203,11 @@ h3 {
 	display: flex;
 	flex-direction: column;
 }
+.profile-img {
+	max-width: 18vw;
+}
 .profile-page {
+	min-height: calc(100vh - 60px);
 	display: flex;
 	position: relative;
 	flex-direction: row;
@@ -209,25 +221,18 @@ h3 {
 	border: 5px solid var(--primary);
 	margin: 5px;
 	padding: 20px;
+	min-width: 20%;
+	align-items: center;
+}
+.profile-sidebar-username {
+	font-size: 20px;
+	text-align: center;
+	color: var(--primary-dark);
 }
 /* .save {
 	TODO: add styling for save button
 } */
 /* edit profile button*/
-.edit-prof {
-	color: white;
-	background-color: rgb(255, 115, 0);
-    border: 1px solid rgb(255, 115, 0);
-	position: absolute;
-  	top: 0;
-  	right: 0;
-    border-radius: 5px;
-	margin: 7px;
-    padding: 5px;
-}
-.edit-prof:hover {
-	color: lightgray;
-}
 .search-result {
 	display: flex;
 	border: 2px solid rgb(201, 201, 201);
@@ -246,6 +251,9 @@ h3 {
 	position: absolute;
 	left: 10%;
 	top: 60px;
+}
+.sidebar-full-name {
+	text-align: center;
 }
 .sign-in-section {
     display: flex;
@@ -300,6 +308,20 @@ h3 {
 	right: 175px;
 	margin: 7px;
 }
+#edit-profile {
+	color: white;
+	background-color: rgb(255, 115, 0);
+    border: 1px solid rgb(255, 115, 0);
+	position: absolute;
+  	top: 0;
+  	right: 0;
+    border-radius: 5px;
+	margin: 7px;
+    padding: 5px;
+}
+#edit-profile:hover {
+	color: lightgray;
+}
 #make-post {
 	margin: 7px;
 }
@@ -311,7 +333,4 @@ h3 {
 #sign-up {
 	position: relative;
 	left: 41%;
-}
-textarea {
-	resize: none;
 }
