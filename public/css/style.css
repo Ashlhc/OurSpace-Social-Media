@@ -140,6 +140,9 @@ input {
 .full-name {
 	color: rgb(105, 105, 105);
 }
+.header-right {
+	display: flex;
+}
 .header-title {
 	font-size: 30px;
 	color: white;
@@ -180,6 +183,7 @@ input {
 }
 .log-out {
 	background-color: salmon;
+	margin-left: 100px;
 }
 /* .no-results {
 	TODO: add styling

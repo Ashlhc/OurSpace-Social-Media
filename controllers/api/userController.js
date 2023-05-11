@@ -1,6 +1,19 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const { User } = require('../../models');
+const { Op } = require("sequelize");
+
+
+// POST ROUTE - LOGOUT
+router.post("/logout",(req,res)=>{
+  if (req.session.logged_in) {
+    req.session.destroy(()=>{
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
 
 // GET ROUTE - ALL
 router.get('/', async (req, res) => {
@@ -36,7 +49,7 @@ router.get('/:id', async (req, res) => {
   try {
     const user = await User.findByPk(id);
     if (!user) {
-      return res.status(404).json({error: err});
+      return res.status(404).json("");
     }
     res.json(user);
   } catch (err) {
@@ -44,6 +57,21 @@ router.get('/:id', async (req, res) => {
     res.status(500).json({ error: err});
   }
 });
+
+// GET ROUTE - SINGULAR BY USERNAME
+router.get("/user/:username",(req,res)=>{
+  User.findOne({
+    where: {
+      username: req.params.username
+  }})
+  .then(user=>{
+    res.json(user);
+  })
+  .catch(err=>{
+    console.log(err);
+    res.status(500).json({msg:"error occured",err})
+  })
+})
 
 // GET ROUTE - SINGULAR BY ID INCLUDING FRIENDS
 router.get("/:userId/friends", (req,res)=>{
@@ -154,16 +182,6 @@ router.post("/login", async (req,res)=>{
   }
 });
 
-// POST ROUTE - LOGOUT
-router.post("/logout",(req,res)=>{
-  if (req.session.logged_in) {
-    res.session.destroy(()=>{
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
 
 // UPDATE ROUTE
 router.put('/:id', async (req, res) => {

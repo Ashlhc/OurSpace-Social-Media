@@ -15,13 +15,13 @@
 <body>
     <header>
         <a href="/" class="header-right">OURspace</a>
-        <div>
+        <div class="header-right">
             <form id="search">
                 <input type="text" placeholder="find user" id="find-user">
                 <button class="accent btn" id="find-user-btn">Search</button>
             </form>
             {{#if cookie.logged_in}}
-                <button class="log-out btn">log out</button>
+                <button class="log-out btn" id="logout-btn">log out</button>
             {{/if}}
         </div>
     </header>
