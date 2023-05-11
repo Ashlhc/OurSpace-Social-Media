@@ -125,8 +125,11 @@ input {
 .friends {
 	display: flex;
 	flex-direction: column;
-	border: 2px solid purple;
+	border: 4px solid var(--primary);
 	margin: 5px;
+}
+h3 {
+	margin: 4px;
 }
 .friends-data {
 	display: flex;
@@ -163,7 +166,7 @@ input {
 .interests {
 	display: flex;
 	flex-direction: column;
-	border: 2px solid purple;
+	border: 4px solid var(--primary);
 	margin: 5px;
 	padding: 5px;
 }
@@ -194,20 +197,37 @@ input {
 }
 .profile-page {
 	display: flex;
+	position: relative;
 	flex-direction: row;
 	margin: 10px 10px 0 10px ;
-	border: 2px solid purple;
+	border: 6px solid var(--primary);
 	padding: 10px;
 }
 .profile-sidebar {
 	display: flex;
 	flex-direction: column;
-	border: 2px solid purple;
+	border: 5px solid var(--primary);
 	margin: 5px;
+	padding: 20px;
 }
 /* .save {
 	TODO: add styling for save button
 } */
+/* edit profile button*/
+.edit-prof {
+	color: white;
+	background-color: rgb(255, 115, 0);
+    border: 1px solid rgb(255, 115, 0);
+	position: absolute;
+  	top: 0;
+  	right: 0;
+    border-radius: 5px;
+	margin: 7px;
+    padding: 5px;
+}
+.edit-prof:hover {
+	color: lightgray;
+}
 .search-result {
 	display: flex;
 	border: 2px solid rgb(201, 201, 201);
@@ -272,8 +292,16 @@ input {
 .wall {
 	display: flex;
 	flex-direction: column;
-	border: 2px solid purple;
-	margin: 5px;
+	border: 4px solid var(--primary);
+	width: 50%;
+	text-align: center;
+	position: absolute;
+	bottom: 150px;
+	right: 175px;
+	margin: 7px;
+}
+#make-post {
+	margin: 7px;
 }
 #header-brand {
     font-size: 40px;

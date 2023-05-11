@@ -143,8 +143,7 @@ router.post("/:userId/newfriend/:friendId", (req,res)=> {
       console.log(err);
       res.status(500).json({error: err});
   });
-});
-
+})
 // POST ROUTE - LOGIN
 // JSON FORMAT
 // username
