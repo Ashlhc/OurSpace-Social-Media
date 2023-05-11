@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function() {
+
 
 
 
@@ -85,5 +87,6 @@ editProfile.addEventListener('click', function() {
         cancelBtn.remove();
         // TODO: consider where in the function you want to remove the editProfile button. make sure to change comment above accordingly
         editProfile.classList.remove('hide')
+        });
     });
 });
