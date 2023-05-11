@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+
 
 
 
@@ -20,7 +20,7 @@ editProfile.addEventListener('click', function() {
     
     // hides "edit profile" button
     editProfile.classList.add('hide')
-    const bio = document.getElementById('bio');
+    const bio = document.querySelector('.bio');
     // creating variables for text content of the bio before editing
     const bioText = bio.textContent;
 
@@ -89,4 +89,3 @@ editProfile.addEventListener('click', function() {
         editProfile.classList.remove('hide')
         });
     });
-});
