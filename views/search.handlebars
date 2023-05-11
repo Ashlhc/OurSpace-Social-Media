@@ -1,0 +1,18 @@
+{{#if users}}
+
+<ul class="search-results">
+    {{#each users as |user|}}
+		<li class="search-result">
+			<div class="user-match">
+				<a href="/profile/{{user.username}}">{{user.username}}</a>
+				<div class="full-name">{{user.first_name}} {{user.last_name}}</div>
+			</div>
+			<button class="btn big-btn add-friend" data-id={{user.id}}>add friend</button>
+		</li>
+    {{/each}}
+</ul>
+
+{{else}}
+{{!-- TODO: add CSS styling to no-results class --}}
+    <p class="no-results">No results found.</p>
+{{/if}}

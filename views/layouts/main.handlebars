@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600&family=Mulish&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>OurSpace</title>
+    <meta name="description" content="A social media website for sharing posts with friends.">
+    <meta name="author" content="OurSpace">
+
+    {{!-- Favicon Links --}}
+    <link rel="icon" type="image/png" href="/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon/favicon-16x16.png" sizes="16x16">
+</head>
+
+<body>
+    <header>
+        <a href="/" class="header-right">OURspace</a>
+        <div class="header-right">
+            <form id="search">
+                <input type="text" placeholder="find user" id="find-user">
+                <button class="accent btn" id="find-user-btn">Search</button>
+            </form>
+            {{#if cookie.logged_in}}
+                <button class="log-out btn" id="logout-btn">log out</button>
+            {{/if}}
+        </div>
+    </header>
+
+    <main>
+        {{{body}}}
+    </main>
+<script src="/js/script.js"></script>
+<script src="/js/login.js"></script>
+<script src="/js/signup.js"></script>
+</body>
+</html>
