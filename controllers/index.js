@@ -7,6 +7,10 @@ router.get("/sessiondata",(req,res)=>{
     res.json(req.session);
 })
 
+router.get("/favicon.ico",(req,res)=>{
+    res.send("Y");
+})
+
 router.use("/api",apiRoutes);
 router.use(htmlRoutes);
 
