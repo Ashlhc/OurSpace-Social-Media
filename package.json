@@ -17,10 +17,11 @@
     "express": "^4.18.2",
     "express-handlebars": "^7.0.7",
     "express-session": "^1.17.3",
-    "handlebars-helpers": "^0.10.0",
+    "handlebars-helpers": "^0.9.8",
     "helpers": "^0.0.6",
     "mysql2": "^3.3.0",
     "sequelize": "^6.31.1",
-    "session": "^0.1.0"
+    "session": "^0.1.0",
+    "uploader": "^3.29.0"
   }
 }
