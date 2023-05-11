@@ -64,7 +64,46 @@ router.get('/profile/:username', function(req,res) {
             currentUser = true;
         }
         const cookie = req.session
+        console.log({user: user, currentUser, cookie: cookie})
         res.render("profile",{user: user, currentUser, cookie: cookie})
+    })
+});
+
+router.get("/profile/id/:id",(req,res)=>{
+    User.findByPk(req.params.id)
+    .then(user=>{
+        res.redirect(`/profile/${user.username}`)
+    })
+})
+
+router.get('/profile/json/:username', function(req,res) {
+    User.findOne({
+        where: {
+            username: req.params.username
+        },
+        include: [{
+            model: Post,
+            include: {
+                model: Comment,
+                include: User
+            }
+        },
+        {
+            model: User,
+            as: "Friends"
+        },
+        {
+            model: Interest
+        }
+    ]})
+    .then(userProfile=>{
+        const user = userProfile.get({plain:true});
+        let currentUser = false;
+        if(user.id===req.session.user_id) {
+            currentUser = true;
+        }
+        const cookie = req.session
+        res.json({user: user, currentUser, cookie: cookie})
     })
 });
 
