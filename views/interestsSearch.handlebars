@@ -1,0 +1,14 @@
+{{#if users}}
+
+<ul class="search-results">
+    {{#each users as |user|}}
+    <li class="search-result">
+        <div class="user-match">
+            <a href="/profile/{{user.username}}">{{user.username}}</a>
+            <div class="full-name">{{user.first_name}} {{user.last_name}}</div>
+        </div>
+        <button class="interests-lists" data-id={{user.id}}>Interests</button>
+    </li>
+    {{/each}}
+</ul>
+{{/if}}
