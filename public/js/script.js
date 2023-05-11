@@ -38,12 +38,27 @@ async function friendHandler(event) {
         headers:{
             "Content-Type": "application/json"
         }
-    },
-    )
-    if (userId.user_id==undefined){
-        alert("You must be logged in to add a friend!");
-    }
-    console.log(event.target.dataset.id)
-    console.log(userId);
-    console.log(userId.user_id);
+    })
+    .then(res=>{
+        return res.json();
+    })
+    .then(async json=>{
+        if (json.user_id==undefined){
+            alert("You must be logged in to add a friend!");
+            return;
+        }
+        const friend_id = event.target.dataset.id;
+        const user_id = json.user_id
+        if (user_id == friend_id) {
+            alert("You can't friend yourself!")
+            return;
+        }
+        const newFriend = await fetch(`/api/users/${user_id}/newfriend/${friend_id}`,{
+            method: "POST",
+        })
+
+        if (newFriend.ok) {
+            console.log("new friend!");
+        }
+    })
 }
