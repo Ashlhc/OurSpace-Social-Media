@@ -26,7 +26,7 @@
         <div class="friends">
           <h3>Friends</h3>
           <div class="friends-data">
-            {{#each user.friend as |Friend|}}
+            {{#each user.Friends as |friend|}}
             <div class="friend-data">  
               <img src="{{friend.profile_img}}">
               <a class="friend-username">{{friend.username}}</a>
@@ -52,29 +52,31 @@
   
   <!-- where all posts and comments are held -->
     <div class="wall">
-      <div class="wall-nav">
+        <div class="wall-nav">
 
         {{!-- create post field at top of page --}}
         <form class="create-post">
-          <input type="text" placeholder="Tell us what's on your mind" id="make-post">
-          <button class="post-btn accent btn">Post</button>
+            <input type="text" placeholder="Tell us what's on your mind" id="make-post">
+            <button class="post-btn accent btn">Post</button>
         </form>
         
         {{!-- existing posts --}}
         {{!--TODO: make a for each statment for each post --}}
-        {{#each user.posts}}
+        {{#each user.Posts as |post|}}
         <div class="post">
 
           {{!-- TODO: create a href that takes you to the user's profile when clicking the username <a> tag --}}
-          <a href="http://localhost:5678/profile">{{user.id}}</a>
+          <a href="http://localhost:5678/profile/id/{{post.UserId}}">{{user.username}}</a>
 
+            <h4>{{post.title}}</h4>
+            <p>{{post.body}}</p>
           {{!-- TODO: make a for each statement to create a comment on a post --}}
           {{!-- TODO: edit the <p> --}}
-          {{#each user.comments}}
+          {{#each user.post.Comments as |comment|}}
           <div class="comment">
-            <p class="comment-text">{{text_content}}</p>
+            <p class="comment-text">{{comment.text}}</p>
             <!-- TODO: add edit and delete buttons for each comment posted by current user -->
-            {{#if is currentUser}}  
+            {{#if currentUser}}  
             <button class="edit-comment btn">Edit</button>
             <button class="delete-btn btn">Delete</button>
             {{/if}}
