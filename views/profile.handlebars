@@ -13,7 +13,7 @@
 
       {{!-- Replaces add-friend button with edit profile button if on your own profile --}}
       {{#unless currentUser}}
-      <button class="add-friend btn">add friend</button>
+      <button class="add-friend btn" data-id={{user.id}}>add friend</button>
       {{else}}
       <div class="edit-prof btn">
         <button id="edit-profile">Edit Profile</button>
