@@ -21,7 +21,6 @@
     "helpers": "^0.0.6",
     "mysql2": "^3.3.0",
     "sequelize": "^6.31.1",
-    "session": "^0.1.0",
-    "uploader": "^3.29.0"
+    "session": "^0.1.0"
   }
 }
