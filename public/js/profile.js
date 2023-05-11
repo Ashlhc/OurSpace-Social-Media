@@ -1,7 +1,7 @@
 
 
 const bio = document.getElementById('bio');
-const editProfile = document.getElementById('edit')
+const editProfile = document.getElementById('edit-prof')
 
 
 // **profile edit button event listener**

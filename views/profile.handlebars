@@ -35,7 +35,7 @@
 
 {{#if currentUser}}
     <div class="edit-prof btn">
-        <button>Edit Profile</button>
+        <button id="edit-profile">Edit Profile</button>
     </div>
 {{/if}}
 {{!-- where all posts and comments are held --}}
@@ -45,7 +45,7 @@
             <form>
                 <input type="text" placeholder="Tell us what's on your mind" id="make-post">
                 </form>
-                <button class="btn" type="submit">Post</button>
+                <button class="btn" type="submit" id="post">Post</button>
         {{#each Posts}}
             <div class="post">
                 <p>
@@ -59,7 +59,7 @@
                     <input type="text" name="comment" placeholder="Add a comment...">
                     <button class="edit-cmt btn">Edit</button>
                     <button class="deletebtn">Delete</button>
-                    <button class="btn" type="submit">Post</button>
+                    <button class="btn" type="submit" id="com-post">Post</button>
                 </form>
                 {{/if}}
                 {{#each comments}}

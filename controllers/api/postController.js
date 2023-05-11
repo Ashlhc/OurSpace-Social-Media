@@ -40,8 +40,8 @@ router.post('/', async (req, res) => {
     if (!user) {
       return res.status(404).json({error: err});
     }
-    const posts = await Post.create({ title, body, UserId: author_id });
-    res.status(201).json(posts);
+    const newpost = await Post.create({ title, body, UserId: author_id });
+    res.status(201).json(newpost);
   } catch (err) {
     console.error(err);
     res.status(500).json({error: err});
