@@ -33,7 +33,7 @@ for (let i=0;i<friendBtn.length;i++) {
 }
 
 async function friendHandler(event) {
-    const userId = await fetch("/sessiondata",{
+    await fetch("/sessiondata",{
         method: "GET",
         headers:{
             "Content-Type": "application/json"
@@ -58,7 +58,8 @@ async function friendHandler(event) {
         })
 
         if (newFriend.ok) {
-            console.log("new friend!");
+            console.log("new friend")
         }
+        // TODO: Add responsive class for buttons based on: yourself, not friend, and friend
     })
 }
