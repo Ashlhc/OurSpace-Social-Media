@@ -1,6 +1,8 @@
 
 
 
+
+
 const editProfile = document.getElementById('edit-profile')
 
 
@@ -18,7 +20,7 @@ editProfile.addEventListener('click', function() {
     
     // hides "edit profile" button
     editProfile.classList.add('hide')
-    const bio = document.getElementById('bio');
+    const bio = document.querySelector('.bio');
     // creating variables for text content of the bio before editing
     const bioText = bio.textContent;
 
@@ -85,5 +87,5 @@ editProfile.addEventListener('click', function() {
         cancelBtn.remove();
         // TODO: consider where in the function you want to remove the editProfile button. make sure to change comment above accordingly
         editProfile.classList.remove('hide')
+        });
     });
-});

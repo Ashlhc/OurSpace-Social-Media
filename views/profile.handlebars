@@ -7,15 +7,15 @@
       </div>
       <div class="person-name">
         <p>
-          {{first_name}}<br>
-          {{last_name}}
+          {{user.first_name}}<br>
+          {{user.last_name}}
         </p>
       </div>
       {{!-- TODO: create logic for add friend button: 
                   - if user is not on your friends list, show add friend button --}}
       <button class="add-friend btn">add friend</button>
       <div class="bio" id="bio">
-        <pre>{{bio}}</pre>
+        <pre>{{user.bio}}</pre>
       </div>
     </div>
   
@@ -26,10 +26,10 @@
         <div class="friends">
           <h3>Friends</h3>
           <div class="friends-data">
-            {{#each Friend as |Friend|}}
+            {{#each user.friend as |Friend|}}
             <div class="friend-data">  
-              <img src="{{profile_img}}">
-              <a class="friend-username">{{username}}</a>
+              <img src="{{friend.profile_img}}">
+              <a class="friend-username">{{friend.username}}</a>
             </div>
             {{/each}}
           </div>
@@ -38,8 +38,8 @@
         <div class="interests">
           <h3>Interests</h3>
           <ul class="interests-lists">
-            {{#each}}
-            <li class="interest"> {{user.interests.name}} <button class="delete-interest">X</button></li>
+            {{#each user.interests}}
+            <li class="interest"> {{name}} <button class="delete-interest">X</button></li>
             {{/each}}
           </ul>
         </div>
@@ -62,24 +62,24 @@
         
         {{!-- existing posts --}}
         {{!--TODO: make a for each statment for each post --}}
-        {{#each post}}
+        {{#each user.posts}}
         <div class="post">
 
           {{!-- TODO: create a href that takes you to the user's profile when clicking the username <a> tag --}}
-          <a href="{{!-- ***HERE*** --}}">{{user.username}}</a>
+          <a href="http://localhost:5678/profile">{{user.id}}</a>
 
           {{!-- TODO: make a for each statement to create a comment on a post --}}
           {{!-- TODO: edit the <p> --}}
-          {{!-- {{#each comments}} --}}
+          {{#each user.comments}}
           <div class="comment">
-            <p class="comment-text">{{comment text content}}</p>
+            <p class="comment-text">{{text_content}}</p>
             <!-- TODO: add edit and delete buttons for each comment posted by current user -->
-            <!-- {{#if is currentUser}}  -->
+            {{#if is currentUser}}  
             <button class="edit-comment btn">Edit</button>
             <button class="delete-btn btn">Delete</button>
-            {{!-- {{/if}} --}}
+            {{/if}}
           </div>
-          {{!-- {{/each}} --}}
+          {{/each}}
 
           <form class="create-comment">
             <input type="text" placeholder="Add a comment...">
