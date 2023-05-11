@@ -312,3 +312,6 @@ h3 {
 	position: relative;
 	left: 41%;
 }
+textarea {
+	resize: none;
+}
