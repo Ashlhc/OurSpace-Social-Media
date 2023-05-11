@@ -1,74 +1,94 @@
+        
+<div class="profile-page">
 
-    <div class="profileview">
-        <div class="profileimg">
-            <img src="{{user.profile_img}}">
-        </div>
-        <div class="personname">
-            <p>
-                {{fist_name}}
-                <br>
-                {{last_name}}
-            </p>
-        </div>
-        {{!-- TODO: create logic for add friend button: 
-                        - if user is not on your friends list, show add friend button --}}
-        <div class="bio" id="bio">
-            <pre>{{bio}}</pre>
-        </div>
+    <div class="profile-sidebar">
+      <div class="profileimg">
+        <img src="{{user.profile_img}}">
+      </div>
+      <div class="person-name">
+        <p>
+          {{first_name}}<br>
+          {{last_name}}
+        </p>
+      </div>
+      {{!-- TODO: create logic for add friend button: 
+                  - if user is not on your friends list, show add friend button --}}
+      <button class="add-friend btn">add friend</button>
+      <div class="bio" id="bio">
+        <pre>{{bio}}</pre>
+      </div>
     </div>
-
-    <div class="friends">
-        <div class="friend-data">
+  
+    <div class="profile-assets">
+  
+      <div class="friends-and-interests">
+  
+        <div class="friends">
+          <h3>Friends</h3>
+          <div class="friends-data">
             {{#each Friend as |Friend|}}
-          {{profile_img}}
-          {{username}}
-            {{/each}}
-        </div>
-    </div>
-
-    <div class="interests">
-    <ul class="interests-lists">
-        <li> {{name}} </li>
-    </ul>
-    <button class="deletebtn">Delete</button>
-    </div>
-
-{{#if currentUser}}
-    <div class="edit-prof btn" id="edit-profile">
-        <button>Edit Profile</button>
-    </div>
-{{/if}}
-{{!-- where all posts and comments are held --}}
-    <div class="wall">
-        <div class="wall-nav">
-            <p>{{username}}</p>
-            <form>
-                <input type="text" placeholder="Tell us what's on your mind" id="make-post">
-                </form>
-                <button class="btn" type="submit">Post</button>
-        {{#each Posts}}
-            <div class="post">
-                <p>
-                    {{username}}:
-                    {{title}}
-                    {{body}}
-                </p>
-                {{timestamp}}
-                {{#if is currentUser}} 
-                <form>
-                    <input type="text" name="comment" placeholder="Add a comment...">
-                    <button class="edit-cmt btn">Edit</button>
-                    <button class="deletebtn">Delete</button>
-                    <button class="btn" type="submit">Post</button>
-                </form>
-                {{/if}}
-                {{#each comments}}
-                <div class="comment">
-                    <p>{{text}}</p>
-                    {{!-- {{#if is currentUser}} --}}
-                </div>
-                {{/each}}
+            <div class="friend-data">  
+              <img src="{{profile_img}}">
+              <a class="friend-username">{{username}}</a>
             </div>
-        {{/each}}
+            {{/each}}
+          </div>
+        </div>
+  
+        <div class="interests">
+          <h3>Interests</h3>
+          <ul class="interests-lists">
+            {{#each}}
+            <li class="interest"> {{user.interests.name}} <button class="delete-interest">X</button></li>
+            {{/each}}
+          </ul>
+        </div>
+  
+      <div class="edit-prof btn" id="edit-profile">
+        <button>Edit Profile</button>
+      </div>
+  
     </div>
-</div>
+  
+  <!-- where all posts and comments are held -->
+    <div class="wall">
+      <div class="wall-nav">
+
+        {{!-- create post field at top of page --}}
+        <form class="create-post">
+          <input type="text" placeholder="Tell us what's on your mind" id="make-post">
+          <button class="post-btn accent btn">Post</button>
+        </form>
+        
+        {{!-- existing posts --}}
+        {{!--TODO: make a for each statment for each post --}}
+        {{#each post}}
+        <div class="post">
+
+          {{!-- TODO: create a href that takes you to the user's profile when clicking the username <a> tag --}}
+          <a href="{{!-- ***HERE*** --}}">{{user.username}}</a>
+
+          {{!-- TODO: make a for each statement to create a comment on a post --}}
+          {{!-- TODO: edit the <p> --}}
+          {{!-- {{#each comments}} --}}
+          <div class="comment">
+            <p class="comment-text">{{comment text content}}</p>
+            <!-- TODO: add edit and delete buttons for each comment posted by current user -->
+            <!-- {{#if is currentUser}}  -->
+            <button class="edit-comment btn">Edit</button>
+            <button class="delete-btn btn">Delete</button>
+            {{!-- {{/if}} --}}
+          </div>
+          {{!-- {{/each}} --}}
+
+          <form class="create-comment">
+            <input type="text" placeholder="Add a comment...">
+            <button class="post-btn accent btn">Post</button>
+          </form>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  
+  
