@@ -159,7 +159,7 @@ textarea {
 	color: white;
 }
 .hide {
-	display: hidden;
+	display: none;
 }
 .input-label {
 	font-size: 18px;

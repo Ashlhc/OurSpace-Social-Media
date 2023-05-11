@@ -1,62 +1,73 @@
-<div class="profile-page">
+<section class="profile-page">
 
-    <div class="profile-sidebar">
-      <div class="profile-img">
-        <p class="profile-sidebar-username">{{user.username}}</p>
-        <img src="{{user.profile_img}}">
-      </div>
-      <div class="sidebar-full-name">
-        <p>
-          {{user.first_name}}<br>
-          {{user.last_name}}
-        </p>
-      </div>
+  {{!-- Profile Info Sidebar --}}
+  <section class="profile-sidebar">
 
-      {{!-- Replaces add-friend button with edit profile button if on your own profile --}}
-      {{#unless currentUser}}
-      <button class="add-friend btn" data-id={{user.id}}>add friend</button>
-      {{else}}
-      <div class="edit-prof btn">
-        <button id="edit-profile">Edit Profile</button>
-      </div>
-      {{/unless}}
+    {{!-- Username --}}
+    <section>
+      <h3 class="profile-sidebar-username">{{user.username}}</h3>
+    </section>
+    
+    {{!-- Profile Image, Name, and Username --}}
+    <section class="profileimg">
+      <img id="prof-img" src="{{user.profile_img}}">
+      <button class="upload-img hide">Upload Image</button>
+    </section>
 
-      <div class="bio">
-        <textarea disabled="true" id="bio">{{user.bio}}</textarea>
-      </div>
+    {{!-- Name --}}
+    <section class="sidebar-full-name">
+      <p>{{user.first_name}} {{user.last_name}}</p>
+    </section>
 
+    {{!-- Bio --}}
+    <section class="bio">
+      <textarea disabled="true" id="bio">{{user.bio}}</textarea>
+    </section>
+
+    {{!-- Buttons --}}
+    {{#unless currentUser}}
+    <button class="add-friend btn" data-id={{user.id}}>add friend</button>
+    {{else}}
+    <div class="edit-prof btn">
+      <button id="edit-profile">Edit Profile</button>
     </div>
+    {{/unless}}
+
+  </section>
   
-    <div class="profile-assets">
-  
-      <div class="friends-and-interests">
-  
-        <div class="friends">
-          <h3 id="friends-txt">Friends</h3>
-          <div class="friends-data">
-            {{#each user.Friends as |friend|}}
-            <div class="friend-data">  
-              <img class="friend-img" src="{{friend.profile_img}}">
-              <a class="friend-username" href="/profile/{{friend.username}}">{{friend.username}}</a>
-            </div>
-            {{/each}}
+  {{!-- Friends, Interests, and Wall --}}
+  <section class="profile-assets">
+
+    {{!-- Friends and Interests --}}
+    <section class="friends-and-interests">
+
+      {{!-- Friends --}}
+      <section class="friends">
+        <h3 id="friends-txt">Friends</h3>
+        <div class="friends-data">
+          {{#each user.Friends as |friend|}}
+          <div class="friend-data">  
+            <img class="friend-img" src="{{friend.profile_img}}">
+            <a class="friend-username" href="/profile/{{friend.username}}">{{friend.username}}</a>
           </div>
+          {{/each}}
         </div>
+      </section>
+
+      {{!-- Interests --}}
+      <section class="interests">
+        <h3>Interests</h3>
+        <ul class="interests-lists">
+          {{#each user.Interests as |interest|}}
+          <li class="interest"> {{name}} <button class="delete-interest">X</button></li>
+          {{/each}}
+        </ul>
+      </section>
+    </section>
   
-        <div class="interests">
-          <h3>Interests</h3>
-          <ul class="interests-lists">
-            {{#each user.Interests as |interest|}}
-            <li class="interest"> {{name}} <button class="delete-interest">X</button></li>
-            {{/each}}
-          </ul>
-        </div>
-  
-    </div>
-  
-  <!-- where all posts and comments are held -->
-    <div class="wall">
-        <div class="wall-nav">
+    {{!-- The Wall --}}
+    <section class="wall">
+      <div class="wall-nav">
           <p class="wall-user">{{user.username}}:</p>
         {{!-- create post field at top of page --}}
         <form class="create-post">
@@ -98,7 +109,8 @@
         <br>
         {{/each}}
       </div>
-    </div>
-  </div>
-  
-  
+    </section>
+
+  </section>
+
+</section>
