@@ -214,7 +214,7 @@ h3 {
 	TODO: add styling for save button
 } */
 /* edit profile button*/
-.edit-prof {
+#edit-profile {
 	color: white;
 	background-color: rgb(255, 115, 0);
     border: 1px solid rgb(255, 115, 0);
@@ -225,7 +225,7 @@ h3 {
 	margin: 7px;
     padding: 5px;
 }
-.edit-prof:hover {
+#edit-profile:hover {
 	color: lightgray;
 }
 .search-result {
@@ -315,3 +315,4 @@ h3 {
 textarea {
 	resize: none;
 }
+
