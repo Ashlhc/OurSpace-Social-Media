@@ -7,7 +7,7 @@
 				<a href="/profile/{{user.username}}">{{user.username}}</a>
 				<div class="full-name">{{user.first_name}} {{user.last_name}}</div>
 			</div>
-			<button class="btn big-btn add-friend">add friend</button>
+			<button class="btn big-btn add-friend" data-id={{user.id}}>add friend</button>
 		</li>
     {{/each}}
 </ul>

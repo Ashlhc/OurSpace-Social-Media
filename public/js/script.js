@@ -25,3 +25,25 @@ logoutBtn.addEventListener("click",async function(event){
     }
 })
 }
+
+// Add Friends
+const friendBtn = document.querySelectorAll(".add-friend");
+for (let i=0;i<friendBtn.length;i++) {
+    friendBtn[i].addEventListener("click",friendHandler)
+}
+
+async function friendHandler(event) {
+    const userId = await fetch("/sessiondata",{
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json"
+        }
+    },
+    )
+    if (userId.user_id==undefined){
+        alert("You must be logged in to add a friend!");
+    }
+    console.log(event.target.dataset.id)
+    console.log(userId);
+    console.log(userId.user_id);
+}
