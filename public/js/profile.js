@@ -1,7 +1,7 @@
 
 
-const bio = document.getElementById('bio');
-const editProfile = document.getElementById('.edit-profile')
+
+const editProfile = document.getElementById('edit-profile')
 
 
 // **profile edit button event listener**
@@ -15,9 +15,10 @@ editProfile.addEventListener('click', function() {
 // TODO: create logic for adding/removing interests
 // TODO: **OPTIONAL** (not really though) create seperate functions for editing bio and interests
     // TODO: editprofile function just executes the editBio and editInterest functions
+    
     // hides "edit profile" button
     editProfile.classList.add('hide')
-
+    const bio = document.getElementById('bio');
     // creating variables for text content of the bio before editing
     const bioText = bio.textContent;
 
