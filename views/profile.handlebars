@@ -13,7 +13,7 @@
       </div>
       {{!-- TODO: create logic for add friend button: 
                   - if user is not on your friends list, show add friend button --}}
-      <button class="add-friend btn">add friend</button>
+      <button class="add-friend btn" data-id={{data.id}}>add friend</button>
       <div class="bio" id="bio">
         <pre>{{user.bio}}</pre>
       </div>
@@ -24,7 +24,7 @@
       <div class="friends-and-interests">
   
         <div class="friends">
-          <h3>Friends</h3>
+          <h3 id="friends-txt">Friends</h3>
           <div class="friends-data">
             {{#each user.Friends as |friend|}}
             <div class="friend-data">  
@@ -44,8 +44,8 @@
           </ul>
         </div>
   
-      <div class="edit-prof btn" id="edit-profile">
-        <button>Edit Profile</button>
+      <div id="edit-profile">
+        <button class="edit-prof">Edit Profile</button>
       </div>
   
     </div>
@@ -53,7 +53,7 @@
   <!-- where all posts and comments are held -->
     <div class="wall">
         <div class="wall-nav">
-
+          <p class="wall-user">{{user.username}}:</p>
         {{!-- create post field at top of page --}}
         <form class="create-post">
             <input type="text" placeholder="Tell us what's on your mind" id="make-post">
