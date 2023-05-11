@@ -31,13 +31,23 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
     
-        const userCheck = await fetch(`/api/users/user${usernameInput}`,{
-            method: "GET"
+        // Checks if the username is already taken
+        await fetch(`/api/users/user/${usernameInput}`,{
+            method: "GET",
+            headers:{
+                "Content-Type": "application/json"
+            }
         })
-        if (userCheck!==null) {
-            alert("Username already taken!");
-            return;
-        }
+        .then(res=>{
+            return res.json();
+        })
+        .then(async json=>{
+            console.log(json);
+            if (json !== null) {
+                alert("Username already taken!");
+                return;
+            }
+        })
     
         // If all successful, adds user into the database
         const signup = await fetch("api/users",{
