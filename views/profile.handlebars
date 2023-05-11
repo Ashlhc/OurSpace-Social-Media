@@ -12,18 +12,18 @@
       </div>
 
       {{!-- Replaces add-friend button with edit profile button if on your own profile --}}
-      {{#if currentUser}}
+      {{#unless currentUser}}
       <button class="add-friend btn">add friend</button>
       {{else}}
-      <div class="edit-prof btn" id="edit-profile">
-        <button>Edit Profile</button>
+      <div class="edit-prof btn">
+        <button id="edit-profile">Edit Profile</button>
       </div>
-      {{/if}}
+      {{/unless}}
 
-      <div class="bio" id="bio">
-        <pre>{{user.bio}}</pre>
+      <div class="bio">
+        <textarea disabled="true" id="bio">{{user.bio}}</textarea>
       </div>
-      
+
     </div>
   
     <div class="profile-assets">
