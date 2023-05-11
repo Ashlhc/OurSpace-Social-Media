@@ -36,7 +36,7 @@
             {{#each user.Friends as |friend|}}
             <div class="friend-data">  
               <img class="friend-img" src="{{friend.profile_img}}">
-              <a class="friend-username">{{friend.username}}</a>
+              <a class="friend-username" href="/profile/{{friend.username}}">{{friend.username}}</a>
             </div>
             {{/each}}
           </div>
