@@ -185,22 +185,40 @@ router.post("/login", async (req,res)=>{
 
 // UPDATE ROUTE
 router.put('/:id', async (req, res) => {
-  const { id } = req.params;
-  const { username, first_name, last_name, password, profile_img, bio } = req.body;
-  try {
-    const user = await User.findByPk(id);
+  const { username, first_name, last_name, profile_img, bio } = req.body;
+  try{
+    const user = await User.findByPk(req.params.id)
     if (!user) {
-      return res.status(404).json({error: err});
+      return res.status(404).json("User not found")
     }
-    const updatedUser = await user.update({
-      username,
-      first_name,
-      last_name,
-      password,
-      profile_img,
-      bio
-    });
-    res.json(updatedUser);
+
+    // Checks if request body is empty, then updates and saves the given fields
+    if(!Object.keys(req.body).length) {
+      res.json("request body is empty")
+    } else {
+      // TODO: make this a for loop?
+      if (username) {
+        user.username = username;
+        user.save();
+      }
+      if (first_name) {
+        user.first_name = first_name;
+        user.save();
+      }
+      if (last_name) {
+        user.last_name = last_name;
+        user.save();
+      }
+      if (profile_img) {
+        user.profile_img = profile_img;
+        user.save();
+      }
+      if (bio) {
+        user.bio = bio;
+        user.save();
+      }
+      res.json(user)
+    }
   } catch (err) {
     console.error(err);
     res.status(500).json({error: err});

@@ -32,7 +32,7 @@ User.init({
     },
     profile_img: {
         type: DataTypes.STRING,
-        defaultValue: 'http://placekitten.com/200/300'
+        defaultValue: 'http://placekitten.com/300'
     },
     bio: {
         type: DataTypes.TEXT,
