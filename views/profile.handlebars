@@ -3,6 +3,16 @@
   {{!-- Profile Info Sidebar --}}
   <section class="profile-sidebar">
 
+{{!-- Buttons --}}
+    <section class="profile-sidebar-buttons">
+        {{#unless currentUser}}
+        <button class="add-friend btn" data-id={{user.id}}>add friend</button>
+        {{else}}
+        <div class="edit-prof ">
+        <button class ="btn" id="edit-profile">Edit Profile</button>
+        </div>
+        {{/unless}}
+    </section>
     {{!-- Username --}}
     <section>
       <h3 class="profile-sidebar-username">{{user.username}}</h3>
@@ -11,7 +21,7 @@
     {{!-- Profile Image, Name, and Username --}}
     <section class="profile-img">
       <img id="prof-img" src="{{user.profile_img}}">
-      <button class="upload-img accent btn hide">Upload Image</button>
+      <button class="upload-img btn hide">Upload Image</button>
     </section>
 
     {{!-- Name --}}
@@ -24,14 +34,7 @@
       <textarea disabled="true" id="bio">{{user.bio}}</textarea>
     </section>
 
-    {{!-- Buttons --}}
-    {{#unless currentUser}}
-    <button class="add-friend btn" data-id={{user.id}}>add friend</button>
-    {{else}}
-    <div class="edit-prof ">
-      <button class ="btn" id="edit-profile">Edit Profile</button>
-    </div>
-    {{/unless}}
+    
 
   </section>
   
@@ -73,8 +76,8 @@
         {{!-- Post Creation Form --}}
         {{#if currentUser}}
         <form class="create-post" id="post-form">
-            <input type="text" placeholder="Post Title" class="make-post" id="post-title">
-            <input type="text" placeholder="Post Body" class="make-post" id="post-body">
+            <input type="text" placeholder="Post Title" class="post-input" id="post-title">
+            <input type="text" placeholder="Post Body" class="post-input" id="post-body">
             <button class="post-btn accent btn">Post</button>
         </form>
         {{/if}}
