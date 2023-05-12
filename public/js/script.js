@@ -72,6 +72,7 @@ for (let i=0;i<delBtn.length;i++){
 async function deleteHandler(event) {
     event.preventDefault()
 
+    const clickedBtn = event.target
     const delId = event.target.dataset.id
     const delType = event.target.dataset.type
     // Types
@@ -85,19 +86,19 @@ async function deleteHandler(event) {
     switch (delType) {
 
         case "friend":
-            deleteFriend(delId);
+            deleteFriend(delId, clickedBtn);
             break;
 
         case "interest":
-            deleteInterest(delId);
+            await deleteInterest(delId, clickedBtn);
             break;
 
         case "post":
-            deletePost(delId);
+            deletePost(delId, clickedBtn);
             break;
 
         case "comment":
-            deleteComment(delId);
+            deleteComment(delId, clickedBtn);
             break;
 
         default:
@@ -105,18 +106,24 @@ async function deleteHandler(event) {
     }
 }
 
-async function deleteFriend(id) {
+async function deleteFriend(id, node) {
     console.log("delete friend no.",id)
 }
 
-async function deleteInterest(id) {
+async function deleteInterest(id, node) {
     console.log("delete interest no.",id)
+    const delResult = await fetch(`/api/interests/${id}`,{
+        method: "DELETE",
+    })
+    if (delResult.ok) {
+        node.parentElement.remove();
+    }
 }
 
-async function deletePost(id) {
+async function deletePost(id, node) {
     console.log("delete post no.",id)
 }
 
-async function deleteComment(id) {
+async function deleteComment(id, node) {
     console.log("delete comment no.",id)
 }

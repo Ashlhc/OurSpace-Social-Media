@@ -200,10 +200,12 @@ async function interestHandler(event) {
     const newli = document.createElement("li")
     newli.textContent = newInterest
     newli.classList.add("interest")
-    const newliBtn = document.createElement("button")
-    newliBtn.textContent = "X"
-    newliBtn.classList.add("delete-interest");
-    newli.appendChild(newliBtn)
+
+    // TODO: allow the interest button to work without a page reload
+    // const newliBtn = document.createElement("button")
+    // newliBtn.textContent = "X"
+    // newliBtn.classList.add("delete-interest");
+    // newli.appendChild(newliBtn)
     interestList.appendChild(newli)
 
     // Updates database with new interest
