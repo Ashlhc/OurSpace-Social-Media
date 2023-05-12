@@ -8,7 +8,11 @@ const profImg = document.querySelector("#prof-img");
 
 // Profile Edit Event Listener
 // TODO: allow editing of: first_name, last_name
-editBtn.addEventListener('click', async function() {
+if (editBtn) {
+    editBtn.addEventListener('click', editHandler);
+}
+
+async function editHandler() {
     // Grabs the textarea bio and it's value
     const bio = document.querySelector('#bio');
     const bioText = bio.value;
@@ -62,14 +66,16 @@ editBtn.addEventListener('click', async function() {
 
         // Switches button to save mode
         editBtn.textContent = "Save";
+        editBtn.classList.add
         editBtn.id = 'save';
     }
-});
+}
 
+// Upload Button Event Listener
 uploadBtn.addEventListener("click",uploadImage)
 
+// Handles Image Upload
 async function uploadImage() {
-    console.log("image upload click")
     uploader
         .open({
             maxFilecount: 1,
@@ -86,14 +92,91 @@ async function uploadImage() {
         if (files.length === 0) {
           console.log('No files selected.')
         } else {
-          console.log('Files uploaded:');
-          console.log(files[0].fileUrl);
           profImg.src = files[0].fileUrl
           return;
         }
       }).catch(err => {
         console.error(err);
       });
+};
+
+// Handles posting a post or commment
+const postForm = document.querySelector("#post-form");
+const commentForm = document.querySelectorAll("#comment-form");
+
+// Post Form Event Handler
+postForm.addEventListener("submit",postHandler)
+
+async function postHandler(event) {
+    event.preventDefault();
+    const postTitle = document.querySelector("#post-title").value.trim();
+    const postBody = document.querySelector("#post-body").value.trim();
+    console.log(postTitle+"\n"+postBody)
+
+    await fetch("/sessiondata",{
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res=>{
+        return res.json();
+    })
+    .then(async json=>{
+        await fetch("/api/posts",{
+            method: "POST",
+            body: JSON.stringify({
+                title: postTitle,
+                body: postBody,
+                author_id: json.user_id
+            }),
+            headers:{
+                "Content-Type": "application/json"
+            }
+        })
+    })
+
+    // TODO: Have it append to the page instead of refresh
+    location.reload();
+}
+
+for (let i=0;i<commentForm.length;i++) {
+    commentForm[i].addEventListener("submit",commentHandler)
+}
+
+// Comment Form Event Handler
+async function commentHandler(event) {
+    event.preventDefault();
+
+    const postId = event.target.parentElement.dataset.postid
+    const comText = event.target.firstElementChild.value.trim();
+
+    await fetch("/sessiondata",{
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res=>{
+        return res.json();
+    })
+    .then(async json=>{
+        await fetch("/api/comments",{
+            method: "POST",
+            body: JSON.stringify({
+                text: comText,
+                author_id: json.user_id,
+                post_id: postId
+            }),
+            headers:{
+                "Content-Type": "application/json"
+            }
+        })
+    })
+
+    // TODO: Have it append to the page instead of refresh
+    location.reload();
+
 }
 
 const friendImgs = document.querySelectorAll(".friend-img");
