@@ -23,7 +23,33 @@ router.get('/search/:username', function(req,res) {
     .then(searchedUsers=>{
         const users = searchedUsers.map((user)=>user.get({plain:true}));
         const cookie = req.session
-        res.render("search",{users: users, cookie: cookie})
+
+        if (cookie.logged_in){
+
+            User.findByPk(req.session.user_id,{
+                include: {
+                    model: User,
+                    as: "Friends",
+                    attributes: ["id"]
+                }
+            }).then(activeUser=>{
+                const active = activeUser.get({plain:true});
+                const friendIds = activeUser.Friends.map(friend=>friend.id)
+                for(let i=0;i<users.length;i++){
+                    if(users[i].id == active.id){
+                        users[i]["self"] = true
+                    }
+                    if(friendIds.indexOf(users[i].id) !== -1){
+                        users[i]["friend"] = true
+                    }
+                }
+                
+                res.render("search",{users: users, cookie: cookie, active: active})
+            })
+
+        } else {
+            res.render("search",{users: users, cookie: cookie})
+        }
     })
     .catch(err=>{
         console.log(err);

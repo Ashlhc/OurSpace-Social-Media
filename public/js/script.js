@@ -64,11 +64,11 @@ async function friendHandler(event) {
 
         if (newFriend.ok && newFriendTwo.ok) {
             console.log("new friend")
+            location.reload();
         }
         // TODO: Add responsive class for buttons based on: yourself, not friend, and friend
     })
 
-    location.reload();
 }
 
 // Deletion
@@ -113,6 +113,7 @@ async function deleteHandler(event) {
     }
 }
 
+// Deletes friends
 async function deleteFriend(id, node) {
     await fetch("/sessiondata",{
         method: "GET",
@@ -125,6 +126,7 @@ async function deleteFriend(id, node) {
     })
     .then(async json=>{
 
+        // Deletes both directions
         const delResult = await fetch(`/api/users/${json.user_id}/friends/${id}`,{
             method: "DELETE",
         })
