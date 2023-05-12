@@ -6,7 +6,11 @@
 {{!-- Buttons --}}
     <section class="profile-sidebar-buttons">
         {{#unless currentUser}}
+        {{#if currentFriend}}
+        <button class="add-friend btn" data-id={{user.id}}>friends</button>
+        {{else}}
         <button class="add-friend btn" data-id={{user.id}}>add friend</button>
+        {{/if}}
         {{else}}
         <div class="edit-prof ">
         <button class ="btn" id="edit-profile">Edit Profile</button>

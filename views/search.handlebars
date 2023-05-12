@@ -7,7 +7,17 @@
 				<a href="/profile/{{user.username}}">{{user.username}}</a>
 				<div class="full-name">{{user.first_name}} {{user.last_name}}</div>
 			</div>
+			{{!-- If you're logged in, adds a button --}}
+			{{#if ../cookie.logged_in}}
+			{{#if self}}
+			{{else}}
+			{{#if friend}}
+			<button class="btn big-btn add-friend" data-id={{user.id}}>friends</button>
+			{{else}}
 			<button class="btn big-btn add-friend" data-id={{user.id}}>add friend</button>
+			{{/if}}
+			{{/if}}
+			{{/if}}
 		</li>
     {{/each}}
 </ul>
