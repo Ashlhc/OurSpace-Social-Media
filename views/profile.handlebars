@@ -59,13 +59,24 @@
 
       {{!-- Interests --}}
       <section class="interests">
+
         <h3>Interests</h3>
+
+        <form id="interest-form" class="hide">
+          <input type="text" id="new-interest">
+          <button type="submit">+</button>
+        </form>
+
         <ul class="interests-lists">
           {{#each user.Interests as |interest|}}
-          <li class="interest"> {{name}} <button class="delete-interest">X</button></li>
+          <li class="interest"> {{name}} 
+            <button class="delete-interest">X</button>
+          </li>
           {{/each}}
         </ul>
+
       </section>
+
     </section>
   
     {{!-- The Wall --}}
