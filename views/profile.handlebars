@@ -5,17 +5,17 @@
 
     {{!-- Username --}}
     <section>
-      <h3>{{user.username}}</h3>
+      <h3 class="profile-sidebar-username">{{user.username}}</h3>
     </section>
     
     {{!-- Profile Image, Name, and Username --}}
-    <section class="profileimg">
+    <section class="profile-img">
       <img id="prof-img" src="{{user.profile_img}}">
-      <button class="upload-img hide">Upload Image</button>
+      <button class="upload-img accent btn hide">Upload Image</button>
     </section>
 
     {{!-- Name --}}
-    <section class="person-name">
+    <section class="profile-sidebar-full-name">
       <p>{{user.first_name}} {{user.last_name}}</p>
     </section>
 
@@ -28,8 +28,8 @@
     {{#unless currentUser}}
     <button class="add-friend btn" data-id={{user.id}}>add friend</button>
     {{else}}
-    <div class="edit-prof btn">
-      <button id="edit-profile">Edit Profile</button>
+    <div class="edit-prof ">
+      <button class ="btn" id="edit-profile">Edit Profile</button>
     </div>
     {{/unless}}
 

@@ -66,6 +66,7 @@ async function editHandler() {
 
         // Switches button to save mode
         editBtn.textContent = "Save";
+        editBtn.classList.add
         editBtn.id = 'save';
     }
 }
