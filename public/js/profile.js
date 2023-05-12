@@ -18,6 +18,23 @@ if (editBtn) {
     editBtn.addEventListener('click', editHandler);
 }
 
+// Disables editing when a link is clicked
+const links = document.getElementsByTagName("a")
+for (let i=0;i<links.length;i++){
+    links[i].addEventListener("click",disableEdit)
+}
+function disableEdit() {
+    bio.disabled=true
+    uploadBtn.classList.add("hide");
+    interestForm.classList.add("hide");
+    for (let i=0;i<delBtnHide.length;i++) {
+        delBtnHide[i].classList.add("hide")
+    }
+    editBtn.textContent = "Edit Profile";
+        editBtn.id = "edit-profile";
+}
+
+
 // Handles switching into editing mode
 async function editHandler() {
     // Grabs the textarea bio and it's value
@@ -200,10 +217,12 @@ async function interestHandler(event) {
     const newli = document.createElement("li")
     newli.textContent = newInterest
     newli.classList.add("interest")
-    const newliBtn = document.createElement("button")
-    newliBtn.textContent = "X"
-    newliBtn.classList.add("delete-interest");
-    newli.appendChild(newliBtn)
+
+    // TODO: allow the interest button to work without a page reload
+    // const newliBtn = document.createElement("button")
+    // newliBtn.textContent = "X"
+    // newliBtn.classList.add("delete-interest");
+    // newli.appendChild(newliBtn)
     interestList.appendChild(newli)
 
     // Updates database with new interest
