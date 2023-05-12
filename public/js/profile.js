@@ -30,6 +30,7 @@ async function editHandler() {
         // Disables editing
         bio.disabled=true
         uploadBtn.classList.add("hide");
+        interestForm.classList.add("hide");
 
         const uploadImg=profImg.src
         
@@ -67,6 +68,7 @@ async function editHandler() {
         // Enables editing
         bio.disabled = false
         uploadBtn.classList.remove("hide");
+        interestForm.classList.remove("hide");
 
         // Switches button to save mode
         editBtn.textContent = "Save";
