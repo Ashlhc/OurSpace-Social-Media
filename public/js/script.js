@@ -110,8 +110,8 @@ async function deleteFriend(id, node) {
     console.log("delete friend no.",id)
 }
 
+// Interest Deletion. Deletes from database, then removes the page element
 async function deleteInterest(id, node) {
-    console.log("delete interest no.",id)
     const delResult = await fetch(`/api/interests/${id}`,{
         method: "DELETE",
     })
@@ -120,8 +120,15 @@ async function deleteInterest(id, node) {
     }
 }
 
+
 async function deletePost(id, node) {
     console.log("delete post no.",id)
+    const delResult = await fetch(`/api/posts/${id}`,{
+        method: "DELETE",
+    })
+    if (delResult.ok) {
+        node.parentElement.remove();
+    }
 }
 
 async function deleteComment(id, node) {
