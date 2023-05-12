@@ -158,7 +158,7 @@ h3 {
 	color: white;
 }
 .hide {
-	display: hidden;
+	display: none;
 }
 .input-label {
 	font-size: 18px;
@@ -225,7 +225,7 @@ h3 {
 	color: white;
 	background-color: rgb(255, 115, 0);
     border: 1px solid rgb(255, 115, 0);
-	position: absolute;
+	/* position: absolute; */
   	top: 0;
   	right: 0;
     border-radius: 5px;
@@ -307,7 +307,7 @@ h3 {
 	right: 175px;
 	margin: 7px;
 }
-#make-post {
+.make-post {
 	margin: 7px;
 }
 #header-brand {
