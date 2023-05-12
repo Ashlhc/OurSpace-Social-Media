@@ -46,7 +46,10 @@ router.get('/profile/:username', function(req,res) {
         include: [{
             model: Post,
             include: {
-                model: Comment
+                model: Comment,
+                include: {
+                    model: User
+                }
             }
         },
         {
@@ -64,11 +67,11 @@ router.get('/profile/:username', function(req,res) {
             currentUser = true;
         }
         const cookie = req.session
-        console.log({user: user, currentUser, cookie: cookie})
         res.render("profile",{user: user, currentUser, cookie: cookie})
     })
 });
 
+// Alternate route for reaching profiles using ID
 router.get("/profile/id/:id",(req,res)=>{
     User.findByPk(req.params.id)
     .then(user=>{
@@ -76,6 +79,7 @@ router.get("/profile/id/:id",(req,res)=>{
     })
 })
 
+// just used for getting the profile data in json format
 router.get('/profile/json/:username', function(req,res) {
     User.findOne({
         where: {
@@ -85,7 +89,9 @@ router.get('/profile/json/:username', function(req,res) {
             model: Post,
             include: {
                 model: Comment,
-                include: User
+                include: {
+                    model: User
+                }
             }
         },
         {

@@ -27,13 +27,13 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const { text, author_id, post_id } = req.body;
+  const { name, user_id } = req.body;
   try {
-    const user = await User.findByPk(author_id);
+    const user = await User.findByPk(user_id);
     if (!user) {
       return res.status(404).json({ error: 'No User with this ID found.' });
     }
-    const interest = await Interest.create({ text, author_id, post_id });
+    const interest = await Interest.create({ name: name, UserId: user_id });
     res.status(201).json(interest);
   } catch (err) {
     console.error(err);

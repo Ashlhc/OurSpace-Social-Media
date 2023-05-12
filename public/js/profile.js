@@ -1,91 +1,261 @@
+const uploader = Uploader({
+    apiKey: "free"
+});
+
+// Declarations for all needed queryselectors
+const editBtn = document.querySelector('.edit-prof button')
+const uploadBtn = document.querySelector('.upload-img')
+const profImg = document.querySelector("#prof-img");
+const postForm = document.querySelector("#post-form");
+const commentForm = document.querySelectorAll("#comment-form");
+const interestForm = document.querySelector("#interest-form")
+const delBtnHide = document.querySelectorAll(".delete")
 
 
+// Profile Edit Event Listener
+// TODO: allow editing of: first_name, last_name
+if (editBtn) {
+    editBtn.addEventListener('click', editHandler);
+}
+
+// Disables editing when a link is clicked
+const links = document.getElementsByTagName("a")
+for (let i=0;i<links.length;i++){
+    links[i].addEventListener("click",disableEdit)
+}
+function disableEdit() {
+    bio.disabled=true
+    uploadBtn.classList.add("hide");
+    interestForm.classList.add("hide");
+    for (let i=0;i<delBtnHide.length;i++) {
+        delBtnHide[i].classList.add("hide")
+    }
+    editBtn.textContent = "Edit Profile";
+        editBtn.id = "edit-profile";
+}
 
 
-
-const editProfile = document.getElementById('edit-profile')
-
-
-// **profile edit button event listener**
-    // SUMMARY: 
-        // bio is replaced with a form with the value of the bio's content
-        // below the form, a save and cancel button are created
-            // save button, when clicked, replaces the form with a <pre> element and takes the text content of the form and places it into the <pre> element
-            // cancel button, when clicked, replaces the form with a <pre> element and takes the text content of the old bio and places it into the <pre> element
-
-editProfile.addEventListener('click', function() {
-// TODO: create logic for adding/removing interests
-// TODO: **OPTIONAL** (not really though) create seperate functions for editing bio and interests
-    // TODO: editprofile function just executes the editBio and editInterest functions
+// Handles switching into editing mode
+async function editHandler() {
+    // Grabs the textarea bio and it's value
+    const bio = document.querySelector('#bio');
+    const bioText = bio.value;
     
-    // hides "edit profile" button
-    editProfile.classList.add('hide')
-    const bio = document.querySelector('.bio');
-    // creating variables for text content of the bio before editing
-    const bioText = bio.textContent;
+    // Changes functionality based on if button is in "save" or "edit" mode
+    if (editBtn.id == "save") {
+        
+        // Disables editing
+        bio.disabled=true
+        uploadBtn.classList.add("hide");
+        interestForm.classList.add("hide");
+        for (let i=0;i<delBtnHide.length;i++) {
+            delBtnHide[i].classList.add("hide")
+        }
 
-    // creating variables for the new editable bio which is an input field, setting its value to the text content of the bio
-    const bioInput = document.createElement('input');
-    bioInput.type = 'text';
-    bioInput.value = bioText;
-    bioInput.id = 'bioTxt';
-    // TODO: add appropriate CSS classes to bioInput
-    // bioInput.classList.add('')
+        const uploadImg=profImg.src
+        
+        // Updates database with new info
+        await fetch("/sessiondata",{
+            method: "GET",
+            headers:{
+                "Content-Type": "application/json"
+            }
+        })
+        .then(res=>{
+            return res.json();
+        })
+        .then(async json=>{
+            await fetch(`/api/users/${json.user_id}`,{
+                method: "PUT",
+                body: JSON.stringify({
+                    // TODO: add other attributes in
+                    bio: bioText,
+                    profile_img: uploadImg
+                }),
+                headers:{
+                    "Content-Type": "application/json"
+                }
+            })
+        })
 
-    // creates the save button
-    var saveBtn = document.createElement('button');
-    saveBtn.textContent = 'save';
-    // TODO: add appropriate CSS classes to save button
-    saveBtn.classList.add('btn')
-    saveBtn.id = 'save';
+        // Switches button to edit mode
+        editBtn.textContent = "Edit Profile";
+        editBtn.id = "edit-profile";
+    } else {
 
-    // creates the cancel button
-    var cancelBtn = document.createElement('button');
-    cancelBtn.textContent = 'cancel';
-    // TODO: add appropriate CSS classes to cancel button
-    cancelBtn.classList.add('btn')
-    cancelBtn.id = 'cancel';
+        // Enables editing
+        bio.disabled = false
+        uploadBtn.classList.remove("hide");
+        interestForm.classList.remove("hide");
+        for (let i=0;i<delBtnHide.length;i++) {
+            delBtnHide[i].classList.remove("hide")
+        }
 
-    // effectively changes the bio from a <pre> tag to a form text input using the varibles defined above
-    bio.parentNode.replaceChild(bioInput, bio);
+        // Switches button to save mode
+        editBtn.textContent = "Save";
+        editBtn.classList.add("save")
+        editBtn.id = 'save';
+    }
+}
 
-    // places cancel and save button after the newly created bioInput element
-    bioInput.insertAdjacentElement('afterend', saveBtn);
-    bioInput.insertAdjacentElement('afterend', cancelBtn);
+// Upload Button Event Listener
+if (uploadBtn) {
+    uploadBtn.addEventListener("click",uploadImage)
+}
+async function uploadImage() {
 
-    // event listener for save button
-    saveBtn.addEventListener('click', function() {
+    uploader
+        .open({
+            maxFilecount: 1,
+            multi: false,
+            editor: {
+                images: {
+                    crop: true,
+                    cropShape: "rect",
+                    cropRatio: 1 / 1
+                }
+            }
+        })
+        .then(files => {
+        if (files.length === 0) {
+          console.log('No files selected.')
+        } else {
+          profImg.src = files[0].fileUrl
+          return;
+        }
+      }).catch(err => {
+        console.error(err);
+      });
+};
 
-        // creates a new <pre> element with updated text from bioInput form
-        var updatedBio = document.createElement('pre');
-        updatedBio.textContent = bioInput.value;
-        updatedBio.id = 'bio';
+// Post Form Event Handler
+if (postForm){
+    postForm.addEventListener("submit",postHandler)
+}
+async function postHandler(event) {
+    event.preventDefault();
+    const postTitle = document.querySelector("#post-title").value.trim();
+    const postBody = document.querySelector("#post-body").value.trim();
+    console.log(postTitle+"\n"+postBody)
 
-        // replaces the input with the updated <pre> element
-        bioInput.parentNode.replaceChild(updatedBio, bioInput);
+    await fetch("/sessiondata",{
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res=>{
+        return res.json();
+    })
+    .then(async json=>{
+        await fetch("/api/posts",{
+            method: "POST",
+            body: JSON.stringify({
+                title: postTitle,
+                body: postBody,
+                author_id: json.user_id
+            }),
+            headers:{
+                "Content-Type": "application/json"
+            }
+        })
+    })
 
-        // removes the save and cancel buttons from the page and adds the "edit profile" button
-        saveBtn.remove();
-        cancelBtn.remove();
-        // TODO: consider where in the function you want to remove the editProfile button. make sure to change comment above accordingly
-        editProfile.classList.remove('hide')
-    });
+    // TODO: Have it append to the page instead of refresh
+    location.reload();
+}
 
-    // event listener for cancel button
-    cancelBtn.addEventListener('click', function() {
+// Comment Form Event Handler
+for (let i=0;i<commentForm.length;i++) {
+    commentForm[i].addEventListener("submit",commentHandler)
+}
+async function commentHandler(event) {
+    event.preventDefault();
 
-        // creates a <pre> element with the original bio text content
-        var oldBio = document.createElement('pre');
-        oldBio.textContent = bioText;
-        oldBio.id = 'bio';
+    const postId = event.target.parentElement.dataset.postid
+    const comText = event.target.firstElementChild.value.trim();
 
-        // replaces the input with the original bio
-        bioInput.parentNode.replaceChild(oldBio, bioInput);
+    await fetch("/sessiondata",{
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res=>{
+        return res.json();
+    })
+    .then(async json=>{
+        await fetch("/api/comments",{
+            method: "POST",
+            body: JSON.stringify({
+                text: comText,
+                author_id: json.user_id,
+                post_id: postId
+            }),
+            headers:{
+                "Content-Type": "application/json"
+            }
+        })
+    })
 
-        // removes the save and cancel buttons from the page and adds the "edit profile" button
-        saveBtn.remove();
-        cancelBtn.remove();
-        // TODO: consider where in the function you want to remove the editProfile button. make sure to change comment above accordingly
-        editProfile.classList.remove('hide')
-        });
-    });
+    // TODO: Have it append to the page instead of refresh
+    location.reload();
+
+}
+
+// Interest Form Event Handler
+if (interestForm) {
+    interestForm.addEventListener("submit",interestHandler)
+}
+async function interestHandler(event) {
+    event.preventDefault()
+
+    const newInterest = document.querySelector("#new-interest").value.trim();
+    
+    // Creates and appends an li and button to the page
+    const interestList = document.querySelector(".interests-lists");
+    const newli = document.createElement("li")
+    newli.textContent = newInterest
+    newli.classList.add("interest")
+
+    // TODO: allow the interest button to work without a page reload
+    // const newliBtn = document.createElement("button")
+    // newliBtn.textContent = "X"
+    // newliBtn.classList.add("delete-interest");
+    // newli.appendChild(newliBtn)
+    interestList.appendChild(newli)
+
+    // Updates database with new interest
+    await fetch("/sessiondata",{
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res=>{
+        return res.json();
+    })
+    .then(async json=>{
+        await fetch("/api/interests",{
+            method: "POST",
+            body: JSON.stringify({
+                name: newInterest,
+                user_id: json.user_id,
+            }),
+            headers:{
+                "Content-Type": "application/json"
+            }
+        })
+    })
+}
+
+// WARNING!!! GOOFY FUNCTION FOLLOWS
+const friendImgs = document.querySelectorAll(".friend-img");
+for (let i=0;i<friendImgs.length;i++){
+    const rand1 = Math.floor(Math.random()*50)+25
+    const rand2 = Math.floor(Math.random()*50)+25
+    const rand3 = Math.floor(Math.random()*50)+25
+    const rand4 = Math.floor(Math.random()*50)+25
+    friendImgs[i].setAttribute("style",`border-radius:${rand1}% ${rand2}% ${rand3}% ${rand4}%`)
+}
+// END GOOFY FUNCTION WARNING

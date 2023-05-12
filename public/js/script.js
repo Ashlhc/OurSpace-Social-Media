@@ -63,3 +63,96 @@ async function friendHandler(event) {
         // TODO: Add responsive class for buttons based on: yourself, not friend, and friend
     })
 }
+
+// Deletion
+const delBtn = document.querySelectorAll(".delete");
+for (let i=0;i<delBtn.length;i++){
+    delBtn[i].addEventListener("click",deleteHandler);
+}
+async function deleteHandler(event) {
+    event.preventDefault()
+
+    const clickedBtn = event.target
+    const delId = event.target.dataset.id
+    const delType = event.target.dataset.type
+    // Types
+    // ==========
+    // friend
+    // interest
+    // post
+    // comment
+
+    // Will take the delType and spit out to another function that does the fetch
+    switch (delType) {
+
+        case "friend":
+            deleteFriend(delId, clickedBtn);
+            break;
+
+        case "interest":
+            await deleteInterest(delId, clickedBtn);
+            break;
+
+        case "post":
+            deletePost(delId, clickedBtn);
+            break;
+
+        case "comment":
+            deleteComment(delId, clickedBtn);
+            break;
+
+        default:
+            console.log("error in deletion");
+    }
+}
+
+async function deleteFriend(id, node) {
+    await fetch("/sessiondata",{
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res=>{
+        return res.json();
+    })
+    .then(async json=>{
+        const delResult = await fetch(`/api/users/${json.user_id}/friends/${id}`,{
+            method: "DELETE",
+        })
+
+        if (delResult.ok) {
+            node.parentElement.remove();
+        }
+    })
+}
+
+// Interest Deletion. Deletes from database then removes the page element
+async function deleteInterest(id, node) {
+    const delResult = await fetch(`/api/interests/${id}`,{
+        method: "DELETE",
+    })
+    if (delResult.ok) {
+        node.parentElement.remove();
+    }
+}
+
+// Post Deletion. Deletes from database then removes page element
+async function deletePost(id, node) {
+    const delResult = await fetch(`/api/posts/${id}`,{
+        method: "DELETE",
+    })
+    if (delResult.ok) {
+        node.parentElement.parentElement.remove();
+    }
+}
+
+// Comment Deletion. Deletes from database then removes page element
+async function deleteComment(id, node) {
+    const delResult = await fetch(`/api/comments/${id}`,{
+        method: "DELETE",
+    })
+    if (delResult.ok) {
+        node.parentElement.remove();
+    }
+}
