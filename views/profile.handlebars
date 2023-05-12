@@ -1,7 +1,7 @@
 <section class="profile-page">
 
   {{!-- Profile Info Sidebar --}}
-  <section class="profile-sidebar">
+  <section class="profile-sidebar border-rad-lg">
 
 {{!-- Buttons --}}
     <section class="profile-sidebar-buttons">
@@ -45,7 +45,7 @@
     <section class="friends-and-interests">
 
       {{!-- Friends --}}
-      <section class="friends">
+      <section class="friends border-rad-lg">
         <h3 id="friends-txt">Friends</h3>
         <div class="friends-data">
           {{#each user.Friends as |friend|}}
@@ -59,7 +59,7 @@
       </section>
 
       {{!-- Interests --}}
-      <section class="interests">
+      <section class="interests border-rad-lg">
 
         <h3>Interests</h3>
 
@@ -81,15 +81,19 @@
     </section>
   
     {{!-- The Wall --}}
-    <section class="wall">
+    <section class="wall border-rad-lg">
 
       <section class="wall-nav">
 
         {{!-- Post Creation Form --}}
         {{#if currentUser}}
+
         <form class="create-post" id="post-form">
-            <input type="text" placeholder="Post Title" class="post-input" id="post-title">
-            <input type="text" placeholder="Post Body" class="post-input" id="post-body">
+            <a href="" class="post-user">erick mcgeeeeeee</a>
+            <section class="post-input">
+                <input type="text" placeholder="Post Title" class="post-title" id="post-title">
+                <input type="text" placeholder="Post Body" class="post-body" id="post-body">
+            </section>
             <button class="post-btn accent btn">Post</button>
         </form>
         {{/if}}
@@ -98,18 +102,23 @@
         {{#each user.Posts as |post|}}
 
         {{!-- Individual Post --}}
-        <section class="post">
-
-            <h4>{{post.title}}</h4>
-            <p>{{post.body}}</p>
-
-            <button class="delete hide" data-id={{id}} data-type="post">X</button>
-            
+        <section class="post" data-postid={{id}}>
+            <section class="post-header">
+                {{!-- TODO: link user profile to every username --}}
+                {{!-- TODO: replace dummy data with {{user.username}} --}}
+                <a href="" class="post-user">erick mcgeeeeeee</a>
+                <section class="post-contents">
+                    <h4>{{post.title}}</h4>
+                    <p>{{post.body}}</p>
+                </section>
+            </section>
             {{#each post.Comments as |comment|}}
 
-            <section class="comment">
+            <section class="comment" data-comment-id={{id}}>
+              {{!-- TODO: replace dummy data with {{comment.User.username}} --}}
+              {{!-- TODO: link user profile to every username --}}
+              <a href="" class="comment-user">FerretFanatic63</a>
 
-              <p>{{comment.User.username}}</p>
               <p class="comment-text">{{comment.text}}</p>
 
               <button class="delete hide" data-id={{id}} data-type="comment">X</button>
