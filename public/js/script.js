@@ -53,15 +53,22 @@ async function friendHandler(event) {
             alert("You can't friend yourself!")
             return;
         }
+
+        // Creates a two-way friend connection when a single user clicks
         const newFriend = await fetch(`/api/users/${user_id}/newfriend/${friend_id}`,{
             method: "POST",
         })
+        const newFriendTwo = await fetch(`/api/users/${friend_id}/newfriend/${user_id}`,{
+            method: "POST",
+        })
 
-        if (newFriend.ok) {
+        if (newFriend.ok && newFriendTwo.ok) {
             console.log("new friend")
         }
         // TODO: Add responsive class for buttons based on: yourself, not friend, and friend
     })
+
+    location.reload();
 }
 
 // Deletion
@@ -117,11 +124,15 @@ async function deleteFriend(id, node) {
         return res.json();
     })
     .then(async json=>{
+
         const delResult = await fetch(`/api/users/${json.user_id}/friends/${id}`,{
             method: "DELETE",
         })
+        const delResultTwo = await fetch(`/api/users/${id}/friends/${json.user_id}`,{
+            method: "DELETE",
+        })
 
-        if (delResult.ok) {
+        if (delResult.ok && delResultTwo.ok) {
             node.parentElement.remove();
         }
     })

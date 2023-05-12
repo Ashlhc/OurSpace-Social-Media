@@ -22,7 +22,7 @@
 
 <body>
     <header>
-        {{!-- If loggied in, will redirect to your profile instead of login --}}
+        {{!-- If logged in, will redirect to your profile instead of login --}}
         <a href="/{{#if cookie.logged_in}}profile/id/{{cookie.user_id}}{{/if}}" class="header-title">OURspace</a>
         <div class="header-right">
             <form id="search">
