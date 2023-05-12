@@ -1,14 +1,11 @@
 :root{
     --neutral: white;
-	--neutral-dark: rgb(218, 218, 218);
     --neutral-text: black;
     --neutral-hover: rgb(200,200,200);
     --neutral-text-hover: black;
-	
 
     --primary: rgb(107, 35, 173);
 	--primary-light: rgb(139, 38, 233);
-	--primary-lighter: rgb(153, 63, 236);
     --primary-text: white;
     --primary-hover: rgb(59, 20, 95);
     --primary-text-hover: ;
@@ -79,8 +76,15 @@ textarea {
 .add-friend:hover {
 	background-color: var(--add-friend-hover);
 }
-.border-rad-lg {
-	border-radius: 10px;
+.btn {
+    color: var(--accent-text);
+    border: 0;
+    border-radius: 5px;
+    padding: 5px;
+}
+.btn:hover {
+    color: var(--accent-text-hover);
+	cursor: pointer;
 }
 .big-brand {
 	font-size: 10vw;
@@ -101,60 +105,17 @@ textarea {
 	min-width: 16vw;
 	height: 100%;
 }
-.btn {
-    color: var(--accent-text);
-    border: 0;
-    border-radius: 5px;
-    padding: 5px;
-}
-.btn:hover {
-    color: var(--accent-text-hover);
-	cursor: pointer;
-}
 .buttons-login {
 	width: 250px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
-.comment {
-	border: 1px solid gray;
-	padding: 5px;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	padding: 5px 10px 5px 10px;
-	width: 100%;
-	background-color: white;
-}
-.comment-text {
-	min-width: 80%;
-}
-.comment-user {
-	color: var(--primary-dark);
-	border: 1px 1px 1px 1px solid black;
-}
-.create-comment {
-	background-color: var(--primary-light);
-	padding: 10px;
-	display: flex;
-	justify-content: space-around;
-	border-radius: 0 0 10px 10px;
-
-}
-.create-comment input {
-	min-width: 90%;
-	padding: 5px;
-}
+/* .cancel {
+	TODO: add styling for cancel button
+} */
 .create-post {
-	display: flex;
-	background-color: var(--primary-dark);
-	justify-content: center;
-	align-items: center;
-	height: 100px;
-	flex-direction: row;
-	padding: 5px;
-	width: 100%;
+
 }
 .forgot-password {
 	font-size: 20px;
@@ -245,65 +206,12 @@ textarea {
 .log-out {
 	background-color: salmon;
 	margin-left: 100px;
-	
 }
 /* .no-results {
 	TODO: add styling
 } */
-.post {
-	margin: 20px 0;
-	border-radius: 10px;
-	width: 95%;
-}
-.post-btn {
-	padding: 2px 10px;
-	font-weight: 500;
-	font-size: 18px;
-}
-.post-contents {
-	min-width: 80%;
-	border: 0px solid red;
-	border-radius: 5px;
-	padding: 5px 10px;
-	background-color: var(--primary-light);
-	display: flex;
-	justify-content: center;
-	align-items: flex-start;
-	flex-direction: column;
-}
-.post-contents h4 {
-	padding-bottom: 5px;
-	background-color: var(--primary-light);
-	min-width: 100%;
-}
-.post-contents p {
-	background-color: var(--primary-lighter);
-	min-width: 100%;
-	border-radius: 5px;
-}
-.post-header {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	background-color: var(--primary);
-	color: white;
-	padding: 5px 0;
-	justify-content: center;
-	padding: 5px 10px 5px 10px;
-	width: 100%;
-	border-radius: 10px 10px 0 0;
-
-}
 .post-input {
-	display: flex;
-	flex-direction: column;
-	width: 80%;
-	margin-right: 10px;
-}
-.post-user {
-	color: white;
-	font-size: 18px;
-	padding-right: 20px;
+	margin: 7px;
 }
 .profile-assets {
 	display: flex;
@@ -322,7 +230,6 @@ textarea {
 .profile-img img {
 	max-width: 18vw;
 	max-height: 18vw;
-	border-radius: 20px;
 }
 .profile-page {
 	min-height: calc(100vh - 60px);
@@ -391,6 +298,7 @@ textarea {
 	left: 10%;
 	top: 60px;
 }
+
 .sign-in-section {
     display: flex;
 	justify-content: center;
@@ -445,19 +353,10 @@ textarea {
 	flex-direction: column;
 	border: 4px solid var(--primary);
 	width: calc(75vw + 10px);
-	align-items: center;
 	text-align: center;
-	margin: 5px;
-	width: 100%;
+	margin: 7px;
+	justify-content: center;
 	min-height: 70vh;
-	background-color: var(--neutral-dark);
-	
-}
-.wall-nav {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
 }
 #edit-profile {
 	color: var(--edit-text);
