@@ -52,6 +52,7 @@
           <div class="friend-data">  
             <img class="friend-img" src="{{friend.profile_img}}">
             <a class="friend-username" href="/profile/{{friend.username}}">{{friend.username}}</a>
+            <button class="delete hide">X</button>
           </div>
           {{/each}}
         </div>
@@ -69,8 +70,8 @@
 
         <ul class="interests-lists">
           {{#each user.Interests as |interest|}}
-          <li class="interest"> {{name}} 
-            <button class="delete-interest">X</button>
+          <li class="interest" data-interestid={{id}}> {{name}} 
+            <button class="delete-interest delete hide">X</button>
           </li>
           {{/each}}
         </ul>
@@ -101,6 +102,8 @@
 
             <h4>{{post.title}}</h4>
             <p>{{post.body}}</p>
+
+            <button class="delete hide">X</button>
             
             {{#each post.Comments as |comment|}}
 
@@ -108,6 +111,8 @@
 
               <p>{{comment.User.username}}</p>
               <p class="comment-text">{{comment.text}}</p>
+
+              <button class="delete hide">X</button>
               
               {{!-- TODO: Add if conditional to add edit button --}}
 

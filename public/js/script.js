@@ -63,3 +63,14 @@ async function friendHandler(event) {
         // TODO: Add responsive class for buttons based on: yourself, not friend, and friend
     })
 }
+
+// Deletion
+const delBtn = document.querySelectorAll(".delete");
+for (let i=0;i<delBtn.length;i++){
+    delBtn[i].addEventListener("click",deleteHandler);
+}
+async function deleteHandler(event) {
+    event.preventDefault()
+
+    console.log("click delete");
+}

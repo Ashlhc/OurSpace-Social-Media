@@ -9,6 +9,8 @@ const profImg = document.querySelector("#prof-img");
 const postForm = document.querySelector("#post-form");
 const commentForm = document.querySelectorAll("#comment-form");
 const interestForm = document.querySelector("#interest-form")
+const delBtnHide = document.querySelectorAll(".delete")
+
 
 // Profile Edit Event Listener
 // TODO: allow editing of: first_name, last_name
@@ -16,6 +18,7 @@ if (editBtn) {
     editBtn.addEventListener('click', editHandler);
 }
 
+// Handles switching into editing mode
 async function editHandler() {
     // Grabs the textarea bio and it's value
     const bio = document.querySelector('#bio');
@@ -31,6 +34,9 @@ async function editHandler() {
         bio.disabled=true
         uploadBtn.classList.add("hide");
         interestForm.classList.add("hide");
+        for (let i=0;i<delBtnHide.length;i++) {
+            delBtnHide[i].classList.add("hide")
+        }
 
         const uploadImg=profImg.src
         
@@ -69,6 +75,9 @@ async function editHandler() {
         bio.disabled = false
         uploadBtn.classList.remove("hide");
         interestForm.classList.remove("hide");
+        for (let i=0;i<delBtnHide.length;i++) {
+            delBtnHide[i].classList.remove("hide")
+        }
 
         // Switches button to save mode
         editBtn.textContent = "Save";
