@@ -107,7 +107,6 @@ async function deleteHandler(event) {
 }
 
 async function deleteFriend(id, node) {
-    console.log("delete friend no.",id)
     await fetch("/sessiondata",{
         method: "GET",
         headers:{
@@ -144,7 +143,7 @@ async function deletePost(id, node) {
         method: "DELETE",
     })
     if (delResult.ok) {
-        node.parentElement.remove();
+        node.parentElement.parentElement.remove();
     }
 }
 
