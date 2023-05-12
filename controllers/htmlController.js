@@ -90,7 +90,7 @@ router.get('/profile/json/:username', function(req,res) {
             include: {
                 model: Comment,
                 include: {
-                    model: User,
+                    model: User
                 }
             }
         },
@@ -100,12 +100,8 @@ router.get('/profile/json/:username', function(req,res) {
         },
         {
             model: Interest
-        }],
-        // order: [
-        //     [Post, "id","ASC"],
-        //     [Post, Comment, "id", "DESC"]
-        // ]
-    })
+        }
+    ]})
     .then(userProfile=>{
         const user = userProfile.get({plain:true});
         let currentUser = false;
