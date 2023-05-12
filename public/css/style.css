@@ -27,12 +27,15 @@
 
 	--add-friend: rgb(72, 197, 72);
 	--add-friend-hover: rgb(39, 151, 39);
+	
 }
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+	/* font-family: 'Mukta', sans-serif; */
     font-family: sans-serif;
+	
 }
 a {
     text-decoration: none;
@@ -51,6 +54,10 @@ header {
 	padding-left: 30px;
 	padding-right: 30px;
 }
+/* .header-right {
+	font-family: 'Mulish', sans-serif;
+	font-weight: bolder;
+} */
 /* header form {
     
 } */
