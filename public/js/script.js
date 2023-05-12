@@ -80,25 +80,43 @@ async function deleteHandler(event) {
     // interest
     // post
     // comment
+
+    // Will take the delType and spit out to another function that does the fetch
     switch (delType) {
 
         case "friend":
-            console.log("delete friend no.",delId)
+            deleteFriend(delId);
             break;
 
         case "interest":
-            console.log("delete interest no.",delId)
+            deleteInterest(delId);
             break;
 
         case "post":
-            console.log("delete post no.",delId)
+            deletePost(delId);
             break;
 
         case "comment":
-            console.log("delete comment no.",delId)
+            deleteComment(delId);
             break;
 
         default:
             console.log("error in deletion");
     }
+}
+
+async function deleteFriend(id) {
+    console.log("delete friend no.",id)
+}
+
+async function deleteInterest(id) {
+    console.log("delete interest no.",id)
+}
+
+async function deletePost(id) {
+    console.log("delete post no.",id)
+}
+
+async function deleteComment(id) {
+    console.log("delete comment no.",id)
 }

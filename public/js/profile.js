@@ -26,9 +26,6 @@ async function editHandler() {
     
     // Changes functionality based on if button is in "save" or "edit" mode
     if (editBtn.id == "save") {
-        // Logs for bugfixing purposes, can be deleted
-        console.log("Saved!")
-        console.log(bioText)
         
         // Disables editing
         bio.disabled=true
@@ -68,8 +65,6 @@ async function editHandler() {
         editBtn.textContent = "Edit Profile";
         editBtn.id = "edit-profile";
     } else {
-        // Logs for bugfixing purposes, can be deleted
-        console.log("Edit Mode")
 
         // Enables editing
         bio.disabled = false
