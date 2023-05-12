@@ -60,7 +60,7 @@ input {
 	border-radius: 5px;
 }
 textarea {
-	resize: none;
+	resize: inherit;
 }
 .accent {
 	background-color: var(--accent);
@@ -230,6 +230,7 @@ textarea {
 	margin: 10px 10px 0 10px ;
 	border: 6px solid var(--primary);
 	padding: 10px;
+	overflow: hidden;
 }
 .profile-sidebar {
 	display: flex;
@@ -238,6 +239,7 @@ textarea {
 	margin: 5px;
 	padding: 10px;
 	min-width: 20%;
+	height: ;
 	align-items: center;
 }
 .profile-sidebar-username {
@@ -330,7 +332,6 @@ textarea {
 	color: var(--edit-text);
 	background-color: var(--edit);
     border: 1px solid rgb(255, 115, 0);
-	/* position: absolute; */
   	top: 0px;
   	right: 0px;
     border-radius: 5px;
