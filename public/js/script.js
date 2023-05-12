@@ -72,5 +72,33 @@ for (let i=0;i<delBtn.length;i++){
 async function deleteHandler(event) {
     event.preventDefault()
 
-    console.log("click delete");
+    const delId = event.target.dataset.id
+    const delType = event.target.dataset.type
+    // Types
+    // ==========
+    // friend
+    // interest
+    // post
+    // comment
+    switch (delType) {
+
+        case "friend":
+            console.log("delete friend no.",delId)
+            break;
+
+        case "interest":
+            console.log("delete interest no.",delId)
+            break;
+
+        case "post":
+            console.log("delete post no.",delId)
+            break;
+
+        case "comment":
+            console.log("delete comment no.",delId)
+            break;
+
+        default:
+            console.log("error in deletion");
+    }
 }
