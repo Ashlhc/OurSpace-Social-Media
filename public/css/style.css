@@ -341,7 +341,7 @@ textarea {
 	background-color: var(--edit-hover);
 	color: var(--edit-text-hover);
 }
-#make-post {
+.make-post {
 	margin: 7px;
 }
 #header-brand {

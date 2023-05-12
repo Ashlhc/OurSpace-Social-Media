@@ -67,48 +67,51 @@
   
     {{!-- The Wall --}}
     <section class="wall">
-      <div class="wall-nav">
-          <p class="wall-user">{{user.username}}:</p>
-        {{!-- create post field at top of page --}}
-        <form class="create-post">
-            <input type="text" placeholder="Tell us what's on your mind" id="make-post">
+
+      <section class="wall-nav">
+
+        {{!-- Post Creation Form --}}
+        {{#if currentUser}}
+        <form class="create-post" id="post-form">
+            <input type="text" placeholder="Post Title" class="make-post" id="post-title">
+            <input type="text" placeholder="Post Body" class="make-post" id="post-body">
             <button class="post-btn accent btn">Post</button>
         </form>
-
-        <br>
+        {{/if}}
         
-        {{!-- existing posts --}}
-        {{!--TODO: make a for each statment for each post --}}
+        {{!-- Existing Posts --}}
         {{#each user.Posts as |post|}}
-        <div class="post">
 
-          {{!-- TODO: create a href that takes you to the user's profile when clicking the username <a> tag --}}
-          <a href="http://localhost:5678/profile/id/{{post.UserId}}">{{user.username}}</a>
+        {{!-- Individual Post --}}
+        <section class="post" data-postid={{id}}>
 
             <h4>{{post.title}}</h4>
             <p>{{post.body}}</p>
-          {{!-- TODO: make a for each statement to create a comment on a post --}}
-          {{!-- TODO: edit the <p> --}}
-            <br>
-          {{#each post.Comments as |comment|}}
-          <div class="comment">
-            <p class="comment-text">{{comment.text}}</p>
-            <!-- TODO: add edit and delete buttons for each comment posted by current user -->
-            {{#if currentUser}}  
-            <button class="edit-comment btn">Edit</button>
-            <button class="delete-btn btn">Delete</button>
-            {{/if}}
-          </div>
-          {{/each}}
+            
+            {{#each post.Comments as |comment|}}
 
-          <form class="create-comment">
-            <input type="text" placeholder="Add a comment...">
-            <button class="post-btn accent btn">Post</button>
-          </form>
-        </div>
-        <br>
+            <section class="comment" data-comment-id={{id}}>
+
+              <p>{{comment.User.username}}</p>
+              <p class="comment-text">{{comment.text}}</p>
+              
+              {{!-- TODO: Add if conditional to add edit button --}}
+
+            </section>
+
+            {{/each}}
+
+            <form class="create-comment" id="comment-form">
+              <input type="text" placeholder="Add a comment...">
+              <button class="post-btn accent btn">Post</button>
+            </form>
+
+        </section>
+
         {{/each}}
-      </div>
+
+      </section>
+
     </section>
 
   </section>
