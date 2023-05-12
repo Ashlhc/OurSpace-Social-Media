@@ -108,6 +108,24 @@ async function deleteHandler(event) {
 
 async function deleteFriend(id, node) {
     console.log("delete friend no.",id)
+    await fetch("/sessiondata",{
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res=>{
+        return res.json();
+    })
+    .then(async json=>{
+        const delResult = await fetch(`/api/users/${json.user_id}/friends/${id}`,{
+            method: "DELETE",
+        })
+
+        if (delResult.ok) {
+            node.parentElement.remove();
+        }
+    })
 }
 
 // Interest Deletion. Deletes from database then removes the page element
@@ -130,9 +148,9 @@ async function deletePost(id, node) {
     }
 }
 
-
+// Comment Deletion. Deletes from database then removes page element
 async function deleteComment(id, node) {
-    const delResult = await fetch(`/api/posts/${id}`,{
+    const delResult = await fetch(`/api/comments/${id}`,{
         method: "DELETE",
     })
     if (delResult.ok) {

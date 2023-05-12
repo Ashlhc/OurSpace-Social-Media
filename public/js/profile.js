@@ -18,6 +18,23 @@ if (editBtn) {
     editBtn.addEventListener('click', editHandler);
 }
 
+// Disables editing when a link is clicked
+const links = document.getElementsByTagName("a")
+for (let i=0;i<links.length;i++){
+    links[i].addEventListener("click",disableEdit)
+}
+function disableEdit() {
+    bio.disabled=true
+    uploadBtn.classList.add("hide");
+    interestForm.classList.add("hide");
+    for (let i=0;i<delBtnHide.length;i++) {
+        delBtnHide[i].classList.add("hide")
+    }
+    editBtn.textContent = "Edit Profile";
+        editBtn.id = "edit-profile";
+}
+
+
 // Handles switching into editing mode
 async function editHandler() {
     // Grabs the textarea bio and it's value
