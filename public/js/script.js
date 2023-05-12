@@ -63,8 +63,10 @@ async function friendHandler(event) {
         })
 
         if (newFriend.ok && newFriendTwo.ok) {
-            console.log("new friend")
-            location.reload();
+            console.log(event.target)
+            event.target.textContent="friends"
+            // FOR ADDING FRIEND BUTTON STYLING, GOES HERE:
+            
         }
         // TODO: Add responsive class for buttons based on: yourself, not friend, and friend
     })
