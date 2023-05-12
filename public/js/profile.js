@@ -9,6 +9,8 @@ const profImg = document.querySelector("#prof-img");
 const postForm = document.querySelector("#post-form");
 const commentForm = document.querySelectorAll("#comment-form");
 const interestForm = document.querySelector("#interest-form")
+const delBtnHide = document.querySelectorAll(".delete")
+
 
 // Profile Edit Event Listener
 // TODO: allow editing of: first_name, last_name
@@ -16,6 +18,7 @@ if (editBtn) {
     editBtn.addEventListener('click', editHandler);
 }
 
+// Handles switching into editing mode
 async function editHandler() {
     // Grabs the textarea bio and it's value
     const bio = document.querySelector('#bio');
@@ -23,14 +26,14 @@ async function editHandler() {
     
     // Changes functionality based on if button is in "save" or "edit" mode
     if (editBtn.id == "save") {
-        // Logs for bugfixing purposes, can be deleted
-        console.log("Saved!")
-        console.log(bioText)
         
         // Disables editing
         bio.disabled=true
         uploadBtn.classList.add("hide");
         interestForm.classList.add("hide");
+        for (let i=0;i<delBtnHide.length;i++) {
+            delBtnHide[i].classList.add("hide")
+        }
 
         const uploadImg=profImg.src
         
@@ -62,13 +65,14 @@ async function editHandler() {
         editBtn.textContent = "Edit Profile";
         editBtn.id = "edit-profile";
     } else {
-        // Logs for bugfixing purposes, can be deleted
-        console.log("Edit Mode")
 
         // Enables editing
         bio.disabled = false
         uploadBtn.classList.remove("hide");
         interestForm.classList.remove("hide");
+        for (let i=0;i<delBtnHide.length;i++) {
+            delBtnHide[i].classList.remove("hide")
+        }
 
         // Switches button to save mode
         editBtn.textContent = "Save";
@@ -78,7 +82,9 @@ async function editHandler() {
 }
 
 // Upload Button Event Listener
-uploadBtn.addEventListener("click",uploadImage)
+if (uploadBtn) {
+    uploadBtn.addEventListener("click",uploadImage)
+}
 async function uploadImage() {
 
     uploader
@@ -106,7 +112,9 @@ async function uploadImage() {
 };
 
 // Post Form Event Handler
-postForm.addEventListener("submit",postHandler)
+if (postForm){
+    postForm.addEventListener("submit",postHandler)
+}
 async function postHandler(event) {
     event.preventDefault();
     const postTitle = document.querySelector("#post-title").value.trim();
@@ -179,7 +187,9 @@ async function commentHandler(event) {
 }
 
 // Interest Form Event Handler
-interestForm.addEventListener("submit",interestHandler)
+if (interestForm) {
+    interestForm.addEventListener("submit",interestHandler)
+}
 async function interestHandler(event) {
     event.preventDefault()
 
@@ -223,10 +233,10 @@ async function interestHandler(event) {
 // WARNING!!! GOOFY FUNCTION FOLLOWS
 const friendImgs = document.querySelectorAll(".friend-img");
 for (let i=0;i<friendImgs.length;i++){
-    const rand1 = Math.floor(Math.random()*100)
-    const rand2 = Math.floor(Math.random()*100)
-    const rand3 = Math.floor(Math.random()*100)
-    const rand4 = Math.floor(Math.random()*100)
+    const rand1 = Math.floor(Math.random()*50)+25
+    const rand2 = Math.floor(Math.random()*50)+25
+    const rand3 = Math.floor(Math.random()*50)+25
+    const rand4 = Math.floor(Math.random()*50)+25
     friendImgs[i].setAttribute("style",`border-radius:${rand1}% ${rand2}% ${rand3}% ${rand4}%`)
 }
 // END GOOFY FUNCTION WARNING

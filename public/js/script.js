@@ -63,3 +63,60 @@ async function friendHandler(event) {
         // TODO: Add responsive class for buttons based on: yourself, not friend, and friend
     })
 }
+
+// Deletion
+const delBtn = document.querySelectorAll(".delete");
+for (let i=0;i<delBtn.length;i++){
+    delBtn[i].addEventListener("click",deleteHandler);
+}
+async function deleteHandler(event) {
+    event.preventDefault()
+
+    const delId = event.target.dataset.id
+    const delType = event.target.dataset.type
+    // Types
+    // ==========
+    // friend
+    // interest
+    // post
+    // comment
+
+    // Will take the delType and spit out to another function that does the fetch
+    switch (delType) {
+
+        case "friend":
+            deleteFriend(delId);
+            break;
+
+        case "interest":
+            deleteInterest(delId);
+            break;
+
+        case "post":
+            deletePost(delId);
+            break;
+
+        case "comment":
+            deleteComment(delId);
+            break;
+
+        default:
+            console.log("error in deletion");
+    }
+}
+
+async function deleteFriend(id) {
+    console.log("delete friend no.",id)
+}
+
+async function deleteInterest(id) {
+    console.log("delete interest no.",id)
+}
+
+async function deletePost(id) {
+    console.log("delete post no.",id)
+}
+
+async function deleteComment(id) {
+    console.log("delete comment no.",id)
+}
