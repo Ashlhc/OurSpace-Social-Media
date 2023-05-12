@@ -111,11 +111,39 @@ textarea {
 	justify-content: space-between;
 	align-items: center;
 }
-/* .cancel {
-	TODO: add styling for cancel button
-} */
+.comment {
+	border: 1px solid gray;
+	padding: 5px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	padding: 5px 10px 5px 10px;
+	width: 100%;
+}
+.comment-text {
+	min-width: 80%;
+}
+.comment-user {
+	color: var(--primary-dark);
+	border: 1px 1px 1px 1px solid black;
+}
+.create-comment {
+	background-color: var(--primary-light);
+	padding: 10px;
+	display: flex;
+	justify-content: space-around;
+}
+.create-comment input {
+	min-width: 90%;
+	padding: 5px;
+}
 .create-post {
-
+	display: flex;
+	background-color: var(--primary);
+	justify-content: center;
+	align-items: center;
+	height: 50px;
+	flex-direction: column;
 }
 .forgot-password {
 	font-size: 20px;
@@ -206,12 +234,40 @@ textarea {
 .log-out {
 	background-color: salmon;
 	margin-left: 100px;
+	
 }
 /* .no-results {
 	TODO: add styling
 } */
+
+.post-btn {
+	padding: 2px 10px;
+	font-weight: 500;
+	font-size: 18px;
+}
+.post-contents {
+	min-width: 80%;
+	border: 1px solid red;
+}
+.post-header {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: var(--primary-light);
+	color: white;
+	padding: 5px 0;
+	justify-content: center;
+	padding: 5px 10px 5px 10px;
+	width: 100%;
+}
 .post-input {
 	margin: 7px;
+	width: 30%;
+}
+.post-user {
+	color: white;
+	font-size: 16px;
+	padding-right: 20px;
 }
 .profile-assets {
 	display: flex;
@@ -230,6 +286,7 @@ textarea {
 .profile-img img {
 	max-width: 18vw;
 	max-height: 18vw;
+	border-radius: 20px;
 }
 .profile-page {
 	min-height: calc(100vh - 60px);
@@ -298,7 +355,6 @@ textarea {
 	left: 10%;
 	top: 60px;
 }
-
 .sign-in-section {
     display: flex;
 	justify-content: center;
@@ -340,6 +396,7 @@ textarea {
 .upload-img:hover {
 	background-color: var(--primary);
 }
+
 .user-match {
 	display: flex;
 	flex-direction: column;
@@ -355,7 +412,6 @@ textarea {
 	width: calc(75vw + 10px);
 	text-align: center;
 	margin: 7px;
-	justify-content: center;
 	min-height: 70vh;
 }
 #edit-profile {

@@ -75,9 +75,12 @@
 
         {{!-- Post Creation Form --}}
         {{#if currentUser}}
+
         <form class="create-post" id="post-form">
-            <input type="text" placeholder="Post Title" class="post-input" id="post-title">
-            <input type="text" placeholder="Post Body" class="post-input" id="post-body">
+            <section class="post-input">
+                <input type="text" placeholder="Post Title" class="post-title" id="post-title">
+                <input type="text" placeholder="Post Body" class="post-body" id="post-body">
+            </section>
             <button class="post-btn accent btn">Post</button>
         </form>
         {{/if}}
@@ -87,15 +90,21 @@
 
         {{!-- Individual Post --}}
         <section class="post" data-postid={{id}}>
-
-            <h4>{{post.title}}</h4>
-            <p>{{post.body}}</p>
-            
+            <section class="post-header">
+                {{!-- TODO: link user profile to every username --}}
+                {{!-- TODO: replace dummy data with {{user.username}} --}}
+                <a href="" class="post-user">erick mcgeeeeeee</a>
+                <section class="post-contents">
+                    <h4>{{post.title}}</h4>
+                    <p>{{post.body}}</p>
+                </section>
+            </section>
             {{#each post.Comments as |comment|}}
 
             <section class="comment" data-comment-id={{id}}>
-
-              <p>{{comment.User.username}}</p>
+              {{!-- TODO: replace dummy data with {{user.username}} --}}
+              {{!-- TODO: link user profile to every username --}}
+              <a href="" class="comment-user">FerretFanatic63</a>
               <p class="comment-text">{{comment.text}}</p>
               
               {{!-- TODO: Add if conditional to add edit button --}}
