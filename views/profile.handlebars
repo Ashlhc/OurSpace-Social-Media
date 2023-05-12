@@ -89,7 +89,7 @@
         {{#if currentUser}}
 
         <form class="create-post" id="post-form">
-            <a href="" class="post-user">erick mcgeeeeeee</a>
+          <p class="post-user">{{user.username}}</p>
             <section class="post-input">
                 <input type="text" placeholder="Post Title" class="post-title" id="post-title">
                 <input type="text" placeholder="Post Body" class="post-body" id="post-body">
@@ -104,20 +104,17 @@
         {{!-- Individual Post --}}
         <section class="post" data-postid={{id}}>
             <section class="post-header">
-                {{!-- TODO: link user profile to every username --}}
-                {{!-- TODO: replace dummy data with {{user.username}} --}}
-                <a href="" class="post-user">erick mcgeeeeeee</a>
+                <p class="post-user">{{../user.username}}</p>
                 <section class="post-contents">
                     <h4>{{post.title}}</h4>
                     <p>{{post.body}}</p>
                 </section>
+                <button class="delete hide" data-id={{id}} data-type="post">X</button>
             </section>
             {{#each post.Comments as |comment|}}
 
             <section class="comment" data-comment-id={{id}}>
-              {{!-- TODO: replace dummy data with {{comment.User.username}} --}}
-              {{!-- TODO: link user profile to every username --}}
-              <a href="" class="comment-user">FerretFanatic63</a>
+              <a href="/profile/{{comment.User.username}}" class="comment-user">{{comment.User.username}}</a>
 
               <p class="comment-text">{{comment.text}}</p>
 
