@@ -5,6 +5,7 @@
     --neutral-text-hover: black;
 
     --primary: rgb(107, 35, 173);
+	--primary-light: rgb(139, 38, 233);
     --primary-text: white;
     --primary-hover: rgb(59, 20, 95);
     --primary-text-hover: ;
@@ -20,9 +21,9 @@
     --delete-hover: rgb(200,0,0);
     --delete-text-hover: rgb(200,200,200);
 
-    --edit: rgb(255, 115, 0);
+    --edit: rgb(255, 152, 67);
     --edit-text: rgb(255, 255, 255);
-    --edit-hover: rgb(236, 106, 0);
+    --edit-hover: rgb(240, 140, 20);
     --edit-text-hover: rgb(201, 201, 201);
 
 	--add-friend: rgb(72, 197, 72);
@@ -61,6 +62,7 @@ input {
 }
 textarea {
 	resize: inherit;
+	padding: 10px;
 }
 .accent {
 	background-color: var(--accent);
@@ -101,7 +103,7 @@ textarea {
 }
 .bio textarea {
 	min-width: 16vw;
-	min-height: 100%;
+	height: 100%;
 }
 .buttons-login {
 	width: 250px;
@@ -112,6 +114,9 @@ textarea {
 /* .cancel {
 	TODO: add styling for cancel button
 } */
+.create-post {
+
+}
 .forgot-password {
 	font-size: 20px;
 	padding-top: 20px;
@@ -140,7 +145,6 @@ textarea {
 	min-width: 37.5vw;
 	align-items: center;
 }
-
 .friends-data {
 	display: flex;
 	flex-direction: row;
@@ -151,6 +155,7 @@ textarea {
 	flex-direction: row;
 	justify-content: space-between;
 	min-width: 65vw;
+	min-height: calc(30vh - 110px);
 }
 .full-name {
 	color: rgb(105, 105, 105);
@@ -205,11 +210,15 @@ textarea {
 /* .no-results {
 	TODO: add styling
 } */
+.post-input {
+	margin: 7px;
+}
 .profile-assets {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
+	min-height: 100%;
 }
 .profile-img {
 	max-width: 20vw;
@@ -239,8 +248,20 @@ textarea {
 	margin: 5px;
 	padding: 10px;
 	min-width: 20%;
-	height: ;
 	align-items: center;
+}
+.profile-sidebar-buttons {
+	display: flex;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.profile-sidebar-full-name {
+	text-align: center;
+	padding: 10px 0;
+	font-weight: 700;
+	font-size: 18px;
 }
 .profile-sidebar-username {
 	font-size: 20px;
@@ -248,10 +269,16 @@ textarea {
 	color: var(--primary-dark);
 	padding-bottom: 10px;
 }
-/* .save {
-	TODO: add styling for save button
-} */
-/* edit profile button*/
+.save {
+	background-color: rgb(64, 214, 64);
+	color: white;
+	margin: 7px;
+    padding: 7px;
+}
+.save:hover {
+	background-color: rgb(0, 189, 0);
+	color: rgb(223, 223, 223);
+}
 .search-result {
 	display: flex;
 	border: 2px solid rgb(201, 201, 201);
@@ -271,11 +298,7 @@ textarea {
 	left: 10%;
 	top: 60px;
 }
-.profile-sidebar-full-name {
-	text-align: center;
-	padding: 10px 0;
-	font-weight: 700;
-}
+
 .sign-in-section {
     display: flex;
 	justify-content: center;
@@ -310,6 +333,13 @@ textarea {
 	flex-direction: column;
 	width: 55%;
 }
+.upload-img {
+	margin: 5px;
+	background-color: var(--primary-light);
+}
+.upload-img:hover {
+	background-color: var(--primary);
+}
 .user-match {
 	display: flex;
 	flex-direction: column;
@@ -326,14 +356,12 @@ textarea {
 	text-align: center;
 	margin: 7px;
 	justify-content: center;
-	min-height: 70%;
+	min-height: 70vh;
 }
 #edit-profile {
 	color: var(--edit-text);
 	background-color: var(--edit);
-    border: 1px solid rgb(255, 115, 0);
-  	top: 0px;
-  	right: 0px;
+    border: 2px solid var(--edit-hover);
     border-radius: 5px;
 	margin: 7px;
     padding: 5px;
@@ -341,9 +369,6 @@ textarea {
 #edit-profile:hover {
 	background-color: var(--edit-hover);
 	color: var(--edit-text-hover);
-}
-.make-post {
-	margin: 7px;
 }
 #header-brand {
     font-size: 40px;
