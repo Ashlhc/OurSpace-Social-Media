@@ -2,9 +2,15 @@ const uploader = Uploader({
     apiKey: "free"
 });
 
+// Declarations for all needed queryselectors
 const editBtn = document.querySelector('.edit-prof button')
 const uploadBtn = document.querySelector('.upload-img')
 const profImg = document.querySelector("#prof-img");
+const postForm = document.querySelector("#post-form");
+const commentForm = document.querySelectorAll("#comment-form");
+const interestForm = document.querySelector("#interest-form")
+const delBtnHide = document.querySelectorAll(".delete")
+
 
 // Profile Edit Event Listener
 // TODO: allow editing of: first_name, last_name
@@ -12,6 +18,7 @@ if (editBtn) {
     editBtn.addEventListener('click', editHandler);
 }
 
+// Handles switching into editing mode
 async function editHandler() {
     // Grabs the textarea bio and it's value
     const bio = document.querySelector('#bio');
@@ -19,13 +26,14 @@ async function editHandler() {
     
     // Changes functionality based on if button is in "save" or "edit" mode
     if (editBtn.id == "save") {
-        // Logs for bugfixing purposes, can be deleted
-        console.log("Saved!")
-        console.log(bioText)
         
         // Disables editing
         bio.disabled=true
         uploadBtn.classList.add("hide");
+        interestForm.classList.add("hide");
+        for (let i=0;i<delBtnHide.length;i++) {
+            delBtnHide[i].classList.add("hide")
+        }
 
         const uploadImg=profImg.src
         
@@ -57,12 +65,14 @@ async function editHandler() {
         editBtn.textContent = "Edit Profile";
         editBtn.id = "edit-profile";
     } else {
-        // Logs for bugfixing purposes, can be deleted
-        console.log("Edit Mode")
 
         // Enables editing
         bio.disabled = false
         uploadBtn.classList.remove("hide");
+        interestForm.classList.remove("hide");
+        for (let i=0;i<delBtnHide.length;i++) {
+            delBtnHide[i].classList.remove("hide")
+        }
 
         // Switches button to save mode
         editBtn.textContent = "Save";
@@ -72,10 +82,11 @@ async function editHandler() {
 }
 
 // Upload Button Event Listener
-uploadBtn.addEventListener("click",uploadImage)
-
-// Handles Image Upload
+if (uploadBtn) {
+    uploadBtn.addEventListener("click",uploadImage)
+}
 async function uploadImage() {
+
     uploader
         .open({
             maxFilecount: 1,
@@ -100,13 +111,10 @@ async function uploadImage() {
       });
 };
 
-// Handles posting a post or commment
-const postForm = document.querySelector("#post-form");
-const commentForm = document.querySelectorAll("#comment-form");
-
 // Post Form Event Handler
-postForm.addEventListener("submit",postHandler)
-
+if (postForm){
+    postForm.addEventListener("submit",postHandler)
+}
 async function postHandler(event) {
     event.preventDefault();
     const postTitle = document.querySelector("#post-title").value.trim();
@@ -140,11 +148,10 @@ async function postHandler(event) {
     location.reload();
 }
 
+// Comment Form Event Handler
 for (let i=0;i<commentForm.length;i++) {
     commentForm[i].addEventListener("submit",commentHandler)
 }
-
-// Comment Form Event Handler
 async function commentHandler(event) {
     event.preventDefault();
 
@@ -179,12 +186,57 @@ async function commentHandler(event) {
 
 }
 
-const friendImgs = document.querySelectorAll(".friend-img");
+// Interest Form Event Handler
+if (interestForm) {
+    interestForm.addEventListener("submit",interestHandler)
+}
+async function interestHandler(event) {
+    event.preventDefault()
 
+    const newInterest = document.querySelector("#new-interest").value.trim();
+    
+    // Creates and appends an li and button to the page
+    const interestList = document.querySelector(".interests-lists");
+    const newli = document.createElement("li")
+    newli.textContent = newInterest
+    newli.classList.add("interest")
+    const newliBtn = document.createElement("button")
+    newliBtn.textContent = "X"
+    newliBtn.classList.add("delete-interest");
+    newli.appendChild(newliBtn)
+    interestList.appendChild(newli)
+
+    // Updates database with new interest
+    await fetch("/sessiondata",{
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res=>{
+        return res.json();
+    })
+    .then(async json=>{
+        await fetch("/api/interests",{
+            method: "POST",
+            body: JSON.stringify({
+                name: newInterest,
+                user_id: json.user_id,
+            }),
+            headers:{
+                "Content-Type": "application/json"
+            }
+        })
+    })
+}
+
+// WARNING!!! GOOFY FUNCTION FOLLOWS
+const friendImgs = document.querySelectorAll(".friend-img");
 for (let i=0;i<friendImgs.length;i++){
-    const rand1 = Math.floor(Math.random()*100)
-    const rand2 = Math.floor(Math.random()*100)
-    const rand3 = Math.floor(Math.random()*100)
-    const rand4 = Math.floor(Math.random()*100)
+    const rand1 = Math.floor(Math.random()*50)+25
+    const rand2 = Math.floor(Math.random()*50)+25
+    const rand3 = Math.floor(Math.random()*50)+25
+    const rand4 = Math.floor(Math.random()*50)+25
     friendImgs[i].setAttribute("style",`border-radius:${rand1}% ${rand2}% ${rand3}% ${rand4}%`)
 }
+// END GOOFY FUNCTION WARNING
