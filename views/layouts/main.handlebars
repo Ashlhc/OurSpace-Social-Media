@@ -22,7 +22,8 @@
 
 <body>
     <header>
-        <a href="/" class="header-title">OURspace</a>
+        {{!-- If loggied in, will redirect to your profile instead of login --}}
+        <a href="/{{#if cookie.logged_in}}profile/id/{{cookie.user_id}}{{/if}}" class="header-title">OURspace</a>
         <div class="header-right">
             <form id="search">
                 <input type="text" placeholder="find user" id="find-user">
