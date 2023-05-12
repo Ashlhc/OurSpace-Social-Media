@@ -78,7 +78,9 @@ async function editHandler() {
 }
 
 // Upload Button Event Listener
-uploadBtn.addEventListener("click",uploadImage)
+if (uploadBtn) {
+    uploadBtn.addEventListener("click",uploadImage)
+}
 async function uploadImage() {
 
     uploader
@@ -106,7 +108,9 @@ async function uploadImage() {
 };
 
 // Post Form Event Handler
-postForm.addEventListener("submit",postHandler)
+if (postForm){
+    postForm.addEventListener("submit",postHandler)
+}
 async function postHandler(event) {
     event.preventDefault();
     const postTitle = document.querySelector("#post-title").value.trim();
@@ -179,7 +183,9 @@ async function commentHandler(event) {
 }
 
 // Interest Form Event Handler
-interestForm.addEventListener("submit",interestHandler)
+if (interestForm) {
+    interestForm.addEventListener("submit",interestHandler)
+}
 async function interestHandler(event) {
     event.preventDefault()
 
