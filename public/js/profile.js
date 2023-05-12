@@ -178,3 +178,13 @@ async function commentHandler(event) {
     location.reload();
 
 }
+
+const friendImgs = document.querySelectorAll(".friend-img");
+
+for (let i=0;i<friendImgs.length;i++){
+    const rand1 = Math.floor(Math.random()*100)
+    const rand2 = Math.floor(Math.random()*100)
+    const rand3 = Math.floor(Math.random()*100)
+    const rand4 = Math.floor(Math.random()*100)
+    friendImgs[i].setAttribute("style",`border-radius:${rand1}% ${rand2}% ${rand3}% ${rand4}%`)
+}
