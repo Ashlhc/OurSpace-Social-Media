@@ -81,6 +81,7 @@ async function editHandler() {
         // Switches button to edit mode
         editBtn.textContent = "Edit Profile";
         editBtn.id = "edit-profile";
+        location.reload();
     } else {
 
         // Enables editing
@@ -247,6 +248,8 @@ async function interestHandler(event) {
             }
         })
     })
+
+    document.querySelector("#new-interest").value = ""
 }
 
 // WARNING!!! GOOFY FUNCTION FOLLOWS

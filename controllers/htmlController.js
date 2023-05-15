@@ -23,7 +23,42 @@ router.get('/search/:username', function(req,res) {
     .then(searchedUsers=>{
         const users = searchedUsers.map((user)=>user.get({plain:true}));
         const cookie = req.session
-        res.render("search",{users: users, cookie: cookie})
+
+        // Checks if you're logged in
+        if (cookie.logged_in){
+
+            // Pulls your friend Ids
+            User.findByPk(req.session.user_id,{
+                include: {
+                    model: User,
+                    as: "Friends",
+                    attributes: ["id"]
+                }
+            }).then(activeUser=>{
+                const active = activeUser.get({plain:true});
+
+                // Creates an array of just the IDs
+                const friendIds = activeUser.Friends.map(friend=>friend.id)
+                // Iterates over the list of search results
+                for(let i=0;i<users.length;i++){
+                    // If it's your own profile, marks it as such
+                    if(users[i].id == active.id){
+                        users[i]["self"] = true
+                    }
+                    // If it's a friend's profile, marks it as such
+                    if(friendIds.indexOf(users[i].id) !== -1){
+                        users[i]["friend"] = true
+                    }
+                }
+                
+                // Renders the search with extra info
+                res.render("search",{users: users, cookie: cookie, active: active})
+            })
+
+        } else {
+            // If not logged in, it just renders users
+            res.render("search",{users: users, cookie: cookie})
+        }
     })
     .catch(err=>{
         console.log(err);
@@ -62,12 +97,21 @@ router.get('/profile/:username', function(req,res) {
     ]})
     .then(userProfile=>{
         const user = userProfile.get({plain:true});
+        const cookie = req.session
         let currentUser = false;
-        if(user.id===req.session.user_id) {
+        // Checks if you're the owner of the current profile
+        if(user.id===cookie.user_id) {
             currentUser = true;
         }
-        const cookie = req.session
-        res.render("profile",{user: user, currentUser, cookie: cookie})
+        // Creates an array of this profile's friends
+        const friendIds = userProfile.Friends.map(friend=>friend.id)
+        let currentFriend = false
+        // Checks if the logged in user is on the profile's friends list
+        if (friendIds.indexOf(cookie.user_id) !== -1) {
+            currentFriend = true
+        }
+        
+        res.render("profile",{user: user, currentUser, cookie: cookie, currentFriend})
     })
 });
 
@@ -104,12 +148,21 @@ router.get('/profile/json/:username', function(req,res) {
     ]})
     .then(userProfile=>{
         const user = userProfile.get({plain:true});
+        const cookie = req.session
         let currentUser = false;
-        if(user.id===req.session.user_id) {
+        // Checks if you're the owner of the current profile
+        if(user.id===cookie.user_id) {
             currentUser = true;
         }
-        const cookie = req.session
-        res.json({user: user, currentUser, cookie: cookie})
+        // Creates an array of this profile's friends
+        const friendIds = userProfile.Friends.map(friend=>friend.id)
+        let currentFriend = false
+        // Checks if the logged in user is on the profile's friends list
+        if (friendIds.indexOf(cookie.user_id) !== -1) {
+            currentFriend = true
+        }
+        
+        res.json({user: user, currentUser, cookie: cookie, currentFriend})
     })
 });
 
